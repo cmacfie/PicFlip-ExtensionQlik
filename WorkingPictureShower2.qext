@@ -1,0 +1,15 @@
+{
+	"name": "WorkingPictureShower2",
+	"description": "An extension with flippable pictures with measures on the back of them.",
+	"icon": "extension",
+	"type": "visualization",
+	"version": "1.0.0",
+	"author": "Christoffer MacFie",
+	"homepage": "",
+	"keywords": "qlik-sense, visualization, image, picture",
+	"license": "",
+	"repository": "",
+	"dependencies": {
+	"qlik-sense": ">=3.0.x"
+	}
+}

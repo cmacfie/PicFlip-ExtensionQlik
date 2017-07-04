@@ -1,0 +1,50 @@
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+	/*  UPDATED! flip the pane when hovered */
+	.flip-container:hover .back {
+		transform: rotateX(0deg);
+	}
+	.flip-container:hover .front {
+	    transform: rotateX(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 200px;
+	height: 200px;
+}
+
+
+/*  UPDATED! front pane, placed above back */
+.front {
+	z-index: 2;
+    position: relative;
+	transform: rotateX(0deg);
+}
+
+
+
+
+/* back, initially hidden pane */
+.back  {
+	transform: rotateX(-180deg);
+}
+
+.vertical.flip-container {
+	position: relative;
+}
+
+.vertical .back {
+	transform: rotateY(180deg);
+}
+
+.vertical.flip-container:hover .back {
+    transform: rotateY(0deg);
+}
+
+.vertical.flip-container:hover .front {
+    transform: rotateY(180deg);
+}

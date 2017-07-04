@@ -1,0 +1,16 @@
+/*  UPDATED! flip the pane when hovered */
+.flip-container:hover .back {
+	transform: rotateX(0deg);
+}
+.flip-container:hover .front {
+    transform: rotateX(180deg);
+}
+
+
+.vertical.flip-container:hover .back {
+    transform: rotateY(-180deg);
+}
+
+.vertical.flip-container:hover .front {
+    transform: rotateY(0deg);
+}

@@ -1,0 +1,133 @@
+.qv-object-PictureShower div.qv-object-content-container {
+	overflow: auto;
+}
+
+
+.qv-object-PictureShower th {
+	border-top: 0px solid #fff;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background:#bbbbbb;
+	vertical-align: middle;
+	cursor: default;
+	font-size: 12px;
+}
+.qv-object-PictureShower td {
+	background:#ff2200;
+}
+
+.qv-object-PictureShower td.numeric {
+	text-align: right;
+}
+.qv-object-PictureShower button {
+	width: 100%;
+}
+
+.ul-extension {
+	margin: 0 auto;
+	list-style: none outside none;
+}
+
+.li-extension {
+	float: left;
+	display: block;
+	width: 400px;
+	height: 400px;
+	margin:5px;
+}
+
+.image-display {
+	max-width: 100%;
+	max-height:100%;
+	display:block;
+	width: auto;
+	height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.myButton {
+		margin-right:10px;
+		margin-bottom: 10px;
+		cursor:pointer;
+    border-radius:50px;
+		width:50px;
+		height:50px;
+		border: 0;
+    color: white;
+    display: inline-block;
+}
+
+#lockButton {
+	border: 2px solid #da5555;
+}
+.myButton_img {
+	width:100%;
+	height:100%;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+
+.flip-container, .front, .back {
+	width: 400px;
+	height: 400px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.buttonRow {
+	height:60px;
+	text-align:right;
+	display:inline;
+	margin-bottom:3px;
+}
+
+.titleHolder {
+	font-size: 50px;
+	left:0;
+	bottom: 0;
+	width: 100%;
+	overflow:hidden;
+	position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+	text-align: left;
+}
+
+.buttonHolder {
+	display: inline-block;
+}
+
+.back {
+	text-align:center;
+}
+.back-title {
+ 	margin:5px;
+}

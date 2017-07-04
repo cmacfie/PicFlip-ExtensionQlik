@@ -1,0 +1,64 @@
+<div class="buttonRow" style="position: relative; display: block;">
+  <div class="titleHolder">
+    <h1>{{layout.props.title}}</h1>
+  </div>
+  <div class="buttonHolder">
+    <button id="flipButton" type="button" class="myButton">
+      <img id="flipButton_img" class="myButton_img" src="/extensions/WorkingPictureShower2/flip.png">
+    </button>
+    <button id="lockButton" type="button" class="myButton">
+      <img id="lockButton_img" class="myButton_img" src="/extensions/WorkingPictureShower2/lock_white.png">
+    </button>
+  </div>
+  <div id="divider" style="width:100%; height:1px; background-color: #000;"></div>
+</div>
+<div class="container" qv-extension style="height: 100%; position: relative; overflow: auto;">
+	<link ref="stylesheet" id="customCSS" href="./style.css"/>
+	<thead>
+	<tr>
+		<th ng-repeat="head in table.headers track by $index" qva-activate="head.orderBy()">{{head.qFallbackTitle}}</th>
+	</tr>
+	</thead>
+		<thead>
+			<tr>
+					<th ng-repeat="dim in layout.qHyperCube.qDimensionInfo" ng-bind="dim.qFallbackTitle" />
+					<th ng-repeat="mea in layout.qHyperCube.qMeasureInfo" ng-bind="mea.qFallbackTitle" />
+			</tr>
+		</thead>
+	<ul class="ul-extension">
+		<span id="row" ng-repeat="row in table.rows track by $index">
+				<li class="li-extension">
+				<span ng-repeat="cell in row.cells track by $index" ng-class="{'selected':cell.selected,'numeric':cell.qNum}" qva-activate="cell.select($event)">
+					<div class="selectable" id="selectable">
+						<div ng-show="{{$index}} == 0" style="cursor:pointer" class="flip-container"  >
+							<div class="flipper">
+								<div  class="front" style="background: {{layout.props.colorFrontside}}" >
+									<img class="image-display" ng-src="{{row.cells[0].qText}}">
+								</div>
+							</div>
+							<div class="back" style="background: {{layout.props.colorBackside}}">
+								<div class="back-title">
+										<div ng-if="row.cells[1]">
+											<h3 class="measure1_title" >{{row.cells[1].qMeasureInfo.qFallbackTitle}}</h3>
+											<h2 class="measure1" >{{row.cells[1].qText}}</h2>
+										</div>
+										<br>
+										<div ng-if="row.cells[2]">
+											<h3 class="measure2_title" >{{row.cells[2].qMeasureInfo.qFallbackTitle}}</h3>
+											<h2 class="measure2" >{{row.cells[2].qText}}</h2>
+										</div>
+										<br>
+										<div ng-if="row.cells[3]">
+											<h3 class="measure3_title" >{{row.cells[3].qMeasureInfo.qFallbackTitle}}</h3>
+											<h2 class="measure3">{{row.cells[3].qText}}</h2><br>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</span>
+				</li>
+		</span>
+	</ul>
+<button ng-if="table.rowCount>table.rows.length" qva-activate="table.getMoreData(); qlik.resize();" class="lui-button more">More...</button>
+</div>
