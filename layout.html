@@ -15,7 +15,7 @@
 <div class="container" qv-extension style="height: 100%; position: relative; overflow: auto;">
 	<link ref="stylesheet" id="customCSS" href="./style.css"/>
 	<thead>
-	<tr>
+<tr>
 		<th ng-repeat="head in table.headers track by $index" qva-activate="head.orderBy()">{{head.qFallbackTitle}}</th>
 	</tr>
 	</thead>
@@ -23,6 +23,7 @@
 			<tr>
 					<th ng-repeat="dim in layout.qHyperCube.qDimensionInfo" ng-bind="dim.qFallbackTitle" />
 					<th ng-repeat="mea in layout.qHyperCube.qMeasureInfo" ng-bind="mea.qFallbackTitle" />
+          <th {{}}
 			</tr>
 		</thead>
 	<ul class="ul-extension">
@@ -39,17 +40,18 @@
 							<div class="back" style="background: {{layout.props.colorBackside}}">
 								<div class="back-title">
 										<div ng-if="row.cells[1]">
-											<h3 class="measure1_title" >{{row.cells[1].qMeasureInfo.qFallbackTitle}}</h3>
+											<h3 ng-if="useTitles"  class="measure1_title" >{{row.cells[1].qMeasureInfo.qFallbackTitle}}</h3>
 											<h2 class="measure1" >{{row.cells[1].qText}}</h2>
 										</div>
-										<br>
 										<div ng-if="row.cells[2]">
-											<h3 class="measure2_title" >{{row.cells[2].qMeasureInfo.qFallbackTitle}}</h3>
+										<br>
+											<h3 ng-if="useTitles" class="measure2_title" >{{row.cells[2].qMeasureInfo.qFallbackTitle}}</h3>
 											<h2 class="measure2" >{{row.cells[2].qText}}</h2>
 										</div>
-										<br>
 										<div ng-if="row.cells[3]">
-											<h3 class="measure3_title" >{{row.cells[3].qMeasureInfo.qFallbackTitle}}</h3>
+
+  										<br>
+											<h3 ng-if="useTitles" class="measure3_title" >{{row.cells[3].qMeasureInfo.qFallbackTitle}}</h3>
 											<h2 class="measure3">{{row.cells[3].qText}}</h2><br>
 										</div>
 								</div>

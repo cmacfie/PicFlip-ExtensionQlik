@@ -124,8 +124,9 @@
 }
 
 .back {
-	text-align:center;
 }
+
 .back-title {
- 	margin:5px;
+	margin:5px;
+	width:100%;
 }

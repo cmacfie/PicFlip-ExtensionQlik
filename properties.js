@@ -13,6 +13,23 @@ define( [], function () {
 		min: 0,
 		max: 3
 	};
+
+
+	var useTitles = {
+		type: "boolean",
+		component: "switch",
+		label: "Use Titles on Cardback",
+		ref: "props.useTitles",
+		options: [{
+			value: true,
+			label: "On"
+		}, {
+			value: false,
+			label: "Off"
+		}],
+		defaultValue: true
+	}
+
   var colorBackside = {
     		ref: "props.colorBackside",
     		label: "Color on Backside",
@@ -131,7 +148,45 @@ define( [], function () {
 			label: "Stretch"
 		}],
 		defaultValue : "contain"
-	}
+	};
+
+
+			var textPlacement_vertically = {
+				type: "string",
+				component: "buttongroup",
+				label: "Text Placement Vertically",
+				ref: "props.textPlacement_vertically",
+				options: [{
+					value: "top",
+					label: "Top"
+				}, {
+					value: "center",
+					label: "Center"
+				}, {
+					value: "bottom",
+					label: "Bottom"
+				}],
+				defaultValue: "top"
+			};
+
+			var textAlignment = {
+				type: "string",
+				component: "buttongroup",
+				label: "Text Alignment",
+				ref: "props.textAlignment",
+				options: [{
+					value: "L",
+					label: "Left"
+				}, {
+					value: "C",
+					label: "Center"
+				}, {
+					value: "R",
+					label: "Right"
+				}],
+				defaultValue: "L"
+			};
+
 
 
 	// *****************************************************************************
@@ -140,7 +195,6 @@ define( [], function () {
 	var appearanceSection = {
 		uses: "settings",
     items: {
-
 			title : title,
 			imageCardColors: {
         type: "items",
@@ -156,6 +210,9 @@ define( [], function () {
         type: "items",
         label: "Text Settings",
         items: {
+					useTitles : useTitles,
+					textPlacement_vertically : textPlacement_vertically,
+					textAlignment : textAlignment,
 					fontsizeMeasure1 : fontsizeMeasure1,
 					fontsizeMeasure2 : fontsizeMeasure2,
 					fontsizeMeasure3 : fontsizeMeasure3
@@ -173,6 +230,8 @@ define( [], function () {
       }
 		}
 	};
+
+
 	// *****************************************************************************
 	// Main properties panel definition
 	// Only what is defined here is returned from properties.js

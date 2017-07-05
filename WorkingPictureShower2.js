@@ -33,12 +33,12 @@ define( [
       if ( !this.$scope.table ) {
         this.$scope.table = qlik.table( this );
       }
+      this.$scope.useTitles = layout.props.useTitles;
+      console.log(this.$scope.useTitles);
       var numMeasures =  this.$scope.layout.qHyperCube.qMeasureInfo.length;
       $( document ).ready(function() {
         var font_h3 = (0.65 + 1/numMeasures)*layout.props.imageSize/10*0.5;
         var font_h2 = (0.65 + 1/numMeasures)*layout.props.imageSize/10;
-        console.log("h2 :", font_h2);
-        console.log("h3 :", font_h3);
         if(layout.props.fontsizeMeasure1 != 0){
           $(".measure1_title").css("font-size", layout.props.fontsizeMeasure1*0.5);
           $(".measure1").css("font-size", layout.props.fontsizeMeasure1*1);
@@ -114,6 +114,9 @@ define( [
         $('#horizontalCss').remove();
         $('#verticalCss_reversed').remove();
         $('#horizontalCss_reversed').remove();
+        $('.back-title').removeClass('align-top');
+        $('.back-title').removeClass('align-center');
+        $('.back-title').removeClass('align-bottom');
       }
       function setUpCss(){
         removeCss();
@@ -123,6 +126,39 @@ define( [
         $('.back').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
         $('.li-extension').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
         $('.flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
+
+        var verticalAlign = layout.props.textPlacement_vertically;
+        if(verticalAlign == "top"){
+          $('.back-title').css({
+            "position": "absolute",
+            "left": "50%", "top": "0%",
+            "transform": "translate(-50%, 0%)"
+          });
+        } else if (verticalAlign == "center"){
+          $('.back-title').css({
+            "position": "absolute",
+            "left": "50%", "top": "50%",
+            "transform": "translate(-50%, -50%)"
+          });
+        } else if (verticalAlign == "bottom"){
+          $('.back-title').css({
+            "position": "absolute",
+            "left": "50%", "top": "100%",
+            "transform": "translate(-50%, -100%)"
+          });
+
+        }
+        var textAlignment = layout.props.textAlignment;
+        if(textAlignment == "L"){
+          $('.back-title').css({"text-align":"left"});
+        } else if(textAlignment == "C"){
+          $('.back-title').css({"text-align":"center"});
+        } else {
+          $('.back-title').css({"text-align":"right"});
+        }
+
+
+
         if(layout.props.cropType == 'cover'){
           $('.image-display').css({"object-fit": "cover"});
         } else if(layout.props.cropType == 'contain') {
@@ -155,6 +191,7 @@ define( [
           }
         }
         if(!isLocked){
+          $("#flipButton").css({"background-color": "#BADA55"});
           addFlip();
         }
       }
@@ -181,6 +218,9 @@ define( [
         }
       });
 
+      function alignVertically(){
+
+      }
       return qlik.Promise.resolve();
     },
   };
