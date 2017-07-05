@@ -60,7 +60,7 @@ define( [], function () {
 	var showFlipButtons = {
 		type: "boolean",
 		component: "switch",
-		label: "Show Buttons",
+		label: "Show Flip Buttons",
 		ref: "props.showFlipButtons",
 		options: [{
 			value: true,
@@ -75,7 +75,7 @@ define( [], function () {
 	var flipOrientation = {
 		type: "string",
 		component: "buttongroup",
-		label: "Orientation",
+		label: "Flip Orientation",
 		ref: "props.flipOrientation",
 		options: [{
 			value: "v",
@@ -115,6 +115,24 @@ define( [], function () {
 		label:"Title"
 	}
 
+	var cropType = {
+		type : "string",
+		ref : "props.cropType",
+		label : "Image Cropping",
+		component : "dropdown",
+		options: [{
+			value: "cover",
+			label: "Cover"
+		}, {
+			value: "contain",
+			label: "Contain"
+		}, {
+			value: "stretch",
+			label: "Stretch"
+		}],
+		defaultValue : "contain"
+	}
+
 
 	// *****************************************************************************
 	// Appearance section
@@ -122,13 +140,8 @@ define( [], function () {
 	var appearanceSection = {
 		uses: "settings",
     items: {
-			general: {
-				type:"items",
-				label:"Title",
-				items :{
-					title : title
-				}
-			},
+
+			title : title,
 			imageCardColors: {
         type: "items",
         label: "Color Settings",
@@ -149,19 +162,15 @@ define( [], function () {
         }
 			}, ImageFlip : {
 				type:"items",
-				label: "Image Flip",
+				label: "Image Customizaiton",
 				items : {
 					showFlipButtons : showFlipButtons,
 					flipOrientation : flipOrientation,
-					flipSpeed : flipSpeed
+					flipSpeed : flipSpeed,
+					imageSize : imageSize,
+					cropType : cropType
 				}
-      }, imageSizer : {
-				type: "items",
-				label: "Size",
-				items : {
-					imageSize : imageSize
-				}
-			}
+      }
 		}
 	};
 	// *****************************************************************************

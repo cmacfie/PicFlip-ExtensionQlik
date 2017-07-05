@@ -123,7 +123,13 @@ define( [
         $('.back').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
         $('.li-extension').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
         $('.flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
-
+        if(layout.props.cropType == 'cover'){
+          $('.image-display').css({"object-fit": "cover"});
+        } else if(layout.props.cropType == 'contain') {
+          $('.image-display').css({"object-fit": "contain"});
+        } else {
+            $('.image-display').css({"object-fit": "fill"});
+        }
 
         if(!layout.props.showFlipButtons) {
           $('.buttonRow').css("display", "none");
