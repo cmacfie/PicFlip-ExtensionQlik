@@ -208,6 +208,32 @@ define( [], function () {
 		defaultValue: true
 	}
 
+	var useBoxShadow = {
+		type: "boolean",
+		component: "switch",
+		label: "Circle Casts Shadow",
+		ref: "props.useBoxShadow",
+		options: [{
+			value: true,
+			label: "On"
+		}, {
+			value: false,
+			label: "Off"
+		}],
+		defaultValue: true
+	};
+
+	var showImageOnBack = {
+		type: "number",
+		label: "Backside Image Opacity",
+		component: "slider",
+		ref: "props.backsideOpacity",
+		min: 0,
+		max: 1,
+		step: 0.05,
+		defaultValue: 0.25
+	};
+
 	var cornerCircleColor = {
 		ref: "props.cornerCircleColor",
 		label: "Color of Corner Circle",
@@ -254,8 +280,10 @@ define( [], function () {
 					flipSpeed : flipSpeed,
 					imageSize : imageSize,
 					cropType : cropType,
+					showImageOnBack : showImageOnBack,
 					cornerCircleColor : cornerCircleColor,
-					showCornerCircle : showCornerCircle
+					showCornerCircle : showCornerCircle,
+					useBoxShadow : useBoxShadow
 				}
       }
 		}

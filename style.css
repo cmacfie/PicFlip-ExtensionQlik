@@ -120,7 +120,7 @@
 }
 
 .back-display {
-	opacity: 0.25;
+
 }
 
 .buttonHolder {
@@ -130,6 +130,7 @@
 .corner-circle {
 	margin: 5px;
 	color: #fff;
+	background-color: rgba(0,0,0,0.3);
 	position:absolute;
 	z-index:3;
 	text-align:center;
@@ -145,6 +146,5 @@
 }
 
 .back-title {
-	margin:5px;
 	width:100%;
 }
