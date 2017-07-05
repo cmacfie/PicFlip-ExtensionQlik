@@ -44,34 +44,40 @@ define( [], function () {
     		ref: "props.colorMeasure1",
     		label: "Color of Measure 1",
     		type: "string",
+				defaultValue : "ffffff"
 	};
 	var colorMeasure2 = {
     		ref: "props.colorMeasure2",
     		label: "Color of Measure 2",
     		type: "string",
+				defaultValue : "ffffff"
 	};
 
 	var colorMeasure3 = {
     		ref: "props.colorMeasure3",
     		label: "Color of Measure 3",
     		type: "string",
+				defaultValue : "ffffff"
 	};
 
 	var fontsizeMeasure1 = {
     		ref: "props.fontsizeMeasure1",
     		label: "Textsize of Measure 1",
-    		type: "number",
+    		type: "string",
+				defaultValue : ""
 	};
 
 	var fontsizeMeasure2 = {
     		ref: "props.fontsizeMeasure2",
     		label: "Textsize of Measure 2",
-    		type: "number",
+    		type: "string",
+				defaultValue : ""
 	};
 	var fontsizeMeasure3 = {
 				ref: "props.fontsizeMeasure3",
 				label: "Textsize of Measure 3",
-				type: "number",
+				type: "string",
+				defaultValue : ""
 	};
 
 	var showFlipButtons = {
@@ -151,41 +157,63 @@ define( [], function () {
 	};
 
 
-			var textPlacement_vertically = {
-				type: "string",
-				component: "buttongroup",
-				label: "Text Placement Vertically",
-				ref: "props.textPlacement_vertically",
-				options: [{
-					value: "top",
-					label: "Top"
-				}, {
-					value: "center",
-					label: "Center"
-				}, {
-					value: "bottom",
-					label: "Bottom"
-				}],
-				defaultValue: "top"
-			};
+	var textPlacement_vertically = {
+		type: "string",
+		component: "buttongroup",
+		label: "Text Placement Vertically",
+		ref: "props.textPlacement_vertically",
+		options: [{
+			value: "top",
+			label: "Top"
+		}, {
+			value: "center",
+			label: "Center"
+		}, {
+			value: "bottom",
+			label: "Bottom"
+		}],
+		defaultValue: "top"
+	};
 
-			var textAlignment = {
-				type: "string",
-				component: "buttongroup",
-				label: "Text Alignment",
-				ref: "props.textAlignment",
-				options: [{
-					value: "L",
-					label: "Left"
-				}, {
-					value: "C",
-					label: "Center"
-				}, {
-					value: "R",
-					label: "Right"
-				}],
-				defaultValue: "L"
-			};
+	var textAlignment = {
+		type: "string",
+		component: "buttongroup",
+		label: "Text Alignment",
+		ref: "props.textAlignment",
+		options: [{
+			value: "L",
+			label: "Left"
+		}, {
+			value: "C",
+			label: "Center"
+		}, {
+			value: "R",
+			label: "Right"
+		}],
+		defaultValue: "L"
+	};
+
+	var showCornerCircle = {
+		type: "boolean",
+		component: "switch",
+		label: "Show Score in Corner",
+		ref: "props.showCornerCircle",
+		options: [{
+			value: true,
+			label: "On"
+		}, {
+			value: false,
+			label: "Off"
+		}],
+		defaultValue: true
+	}
+
+	var cornerCircleColor = {
+		ref: "props.cornerCircleColor",
+		label: "Color of Corner Circle",
+		type: "string",
+		defaultValue : "ffffff"
+	};
 
 
 
@@ -225,7 +253,9 @@ define( [], function () {
 					flipOrientation : flipOrientation,
 					flipSpeed : flipSpeed,
 					imageSize : imageSize,
-					cropType : cropType
+					cropType : cropType,
+					cornerCircleColor : cornerCircleColor,
+					showCornerCircle : showCornerCircle
 				}
       }
 		}

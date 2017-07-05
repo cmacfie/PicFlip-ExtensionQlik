@@ -23,22 +23,26 @@
 			<tr>
 					<th ng-repeat="dim in layout.qHyperCube.qDimensionInfo" ng-bind="dim.qFallbackTitle" />
 					<th ng-repeat="mea in layout.qHyperCube.qMeasureInfo" ng-bind="mea.qFallbackTitle" />
-          <th {{}}
 			</tr>
 		</thead>
 	<ul class="ul-extension">
-		<span id="row" ng-repeat="row in table.rows track by $index">
+		<span id="row" ng-repeat="row in table.rows track by $index" >
 				<li class="li-extension">
 				<span ng-repeat="cell in row.cells track by $index" ng-class="{'selected':cell.selected,'numeric':cell.qNum}" qva-activate="cell.select($event)">
 					<div class="selectable" id="selectable">
 						<div ng-show="{{$index}} == 0" style="cursor:pointer" class="flip-container"  >
 							<div class="flipper">
 								<div  class="front" style="background: {{layout.props.colorFrontside}}" >
+                  <div class="corner-circle">
+                    <h1 style="position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);">{{$parent.$index+1}}</h1>
+                  </div>
 									<img class="image-display" ng-src="{{row.cells[0].qText}}">
 								</div>
 							</div>
 							<div class="back" style="background: {{layout.props.colorBackside}}">
+							<img class="image-display back-display" ng-src="{{row.cells[0].qText}}" >
 								<div class="back-title">
+
 										<div ng-if="row.cells[1]">
 											<h3 ng-if="useTitles"  class="measure1_title" >{{row.cells[1].qMeasureInfo.qFallbackTitle}}</h3>
 											<h2 class="measure1" >{{row.cells[1].qText}}</h2>

@@ -119,8 +119,26 @@
 	text-align: left;
 }
 
+.back-display {
+	opacity: 0.25;
+}
+
 .buttonHolder {
 	display: inline-block;
+}
+
+.corner-circle {
+	margin: 5px;
+	color: #fff;
+	position:absolute;
+	z-index:3;
+	text-align:center;
+	width:40px;
+	height:40px;
+	overflow:hidden;
+	font-size: 30px;
+	border-radius:50px;
+	border: 3px dotted #fff;
 }
 
 .back {

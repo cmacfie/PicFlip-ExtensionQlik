@@ -33,27 +33,27 @@ define( [
       if ( !this.$scope.table ) {
         this.$scope.table = qlik.table( this );
       }
+      console.log(this.$scope.table);
       this.$scope.useTitles = layout.props.useTitles;
-      console.log(this.$scope.useTitles);
       var numMeasures =  this.$scope.layout.qHyperCube.qMeasureInfo.length;
       $( document ).ready(function() {
         var font_h3 = (0.65 + 1/numMeasures)*layout.props.imageSize/10*0.5;
         var font_h2 = (0.65 + 1/numMeasures)*layout.props.imageSize/10;
-        if(layout.props.fontsizeMeasure1 != 0){
+        if(layout.props.fontsizeMeasure1 != ""){
           $(".measure1_title").css("font-size", layout.props.fontsizeMeasure1*0.5);
           $(".measure1").css("font-size", layout.props.fontsizeMeasure1*1);
         } else {
           $(".measure1_title").css("font-size", font_h3);
           $(".measure1").css("font-size", font_h2);
         }
-        if(layout.props.fontsizeMeasure2 != 0){
+        if(layout.props.fontsizeMeasure2 != ""){
           $(".measure2_title").css("font-size", layout.props.fontsizeMeasure2*0.5);
           $(".measure2").css("font-size", layout.props.fontsizeMeasure2*1);
         } else {
           $(".measure2_title").css("font-size", font_h3);
           $(".measure2").css("font-size", font_h2);
         }
-        if(layout.props.fontsizeMeasure3 != 0){
+        if(layout.props.fontsizeMeasure3 != ""){
           $(".measure3_title").css("font-size", layout.props.fontsizeMeasure3*0.5);
           $(".measure3").css("font-size", layout.props.fontsizeMeasure3*1);
         } else {
@@ -157,7 +157,10 @@ define( [
           $('.back-title').css({"text-align":"right"});
         }
 
-
+        $('.corner-circle').css({"color": cornerCircleColor, "display": "block"});
+        if(!layout.props.showCornerCircle){
+          $('.corner-circle').css("display": "block");
+        }
 
         if(layout.props.cropType == 'cover'){
           $('.image-display').css({"object-fit": "cover"});
@@ -218,9 +221,6 @@ define( [
         }
       });
 
-      function alignVertically(){
-
-      }
       return qlik.Promise.resolve();
     },
   };
