@@ -35,6 +35,7 @@ define( [], function () {
     		ref: "props.colorBackside",
     		label: "Color on Backside",
     		type: "string",
+				defaultValue : "333333"
 	};
 	var colorFrontside = {
     		ref: "props.colorFrontside",
