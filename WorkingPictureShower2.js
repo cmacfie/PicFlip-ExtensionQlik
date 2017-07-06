@@ -38,6 +38,22 @@ define( [
       this.$scope.useTitles = layout.props.useTitles;
       var numMeasures =  this.$scope.layout.qHyperCube.qMeasureInfo.length;
       $( document ).ready(function() {
+        setUpCss();
+      });
+
+      function setUpCss(){
+        removeCss();
+        setTextCss();
+        setOtherCssWithProperties();
+        alignImages();
+        setFlipOrientation();
+        if(!isLocked){
+          $("#flipButton").css({"background-color": "#BADA55"});
+          addFlip();
+        }
+      }
+
+      function setTextCss() {
         var font_h3 = (0.65 + 1/numMeasures)*layout.props.imageSize/10*0.5;
         var font_h2 = (0.65 + 1/numMeasures)*layout.props.imageSize/10;
         if(layout.props.fontsizeMeasure1 != ""){
@@ -73,8 +89,7 @@ define( [
           $(".measure3").css("color", layout.props.colorMeasure3);
           $(".measure3_title").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure3, 0.15)));
         }
-        setUpCss();
-      });
+      }
 
       function calculateLighterVersion(color, percent){
         if(color.length == 3){
@@ -118,18 +133,9 @@ define( [
         $('.back-extension-title').removeClass('align-center');
         $('.back-extension-title').removeClass('align-bottom');
       }
-      function setUpCss(){
-        removeCss();
-        $('.titleHolder').css("width", $('.container').width() - $('.buttonHolder').width());
-        $('.flipper').css("transition", layout.props.flipSpeed + "s");
-        $('.front-extension').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
-        $('.back-extension').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
-        $('.li-extension').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
-        $('.flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
-        $('.back-extension-display').css({"opacity": layout.props.backsideOpacity});
 
+      function alignImages() {
         var verticalAlign = layout.props.textPlacement_vertically;
-
         $('.back-extension-title h2, h3').css("padding", "0");
         if(verticalAlign == "top"){
           $('.back-extension-title').css({
@@ -160,31 +166,9 @@ define( [
           $('.back-extension-title').css({"text-align":"right"});
           $('.back-extension-title h2, h3').css("padding-right", "5px");
         }
+      }
 
-        $('.corner-circle').css({"color": layout.props.cornerCircleColor, "display": "block", "border": "3px dotted " + layout.props.cornerCircleColor});
-        if(!layout.props.showCornerCircle){
-          $('.corner-circle').css({"display": "none"});
-        }
-        if(layout.props.useBoxShadow){
-          $('.corner-circle').css({"box-shadow": "3px 3px 3px rgba(0,0,0,0.3)"});
-        } else {
-          $('.corner-circle').css({"box-shadow": ""});
-        }
-
-        if(layout.props.cropType == 'cover'){
-          $('.image-display').css({"object-fit": "cover"});
-        } else if(layout.props.cropType == 'contain') {
-          $('.image-display').css({"object-fit": "contain"});
-        } else {
-            $('.image-display').css({"object-fit": "fill"});
-        }
-
-        if(!layout.props.showFlipButtons) {
-          $('.buttonRow').css("display", "none");
-        } else {
-          $('.container').css("height", "100%");
-          $('.container').css("height", $('.container').height()-60);
-          $('.buttonRow').css("display", "block"); }
+      function setFlipOrientation(){
         if(layout.props.flipOrientation == "h"){
           if(isReversed){
             currentCss = "fh_r";
@@ -202,11 +186,47 @@ define( [
             $('<link rel="stylesheet" id="verticalCss" type="text/css" href="' + path + '/css/flipVertical.css">').appendTo("head");
           }
         }
-        if(!isLocked){
-          $("#flipButton").css({"background-color": "#BADA55"});
-          addFlip();
+      }
+
+      function setOtherCssWithProperties(){
+        $('.titleHolder').css("width", $('.container').width() - $('.buttonHolder').width());
+        $('.flipper').css("transition", layout.props.flipSpeed + "s");
+        $('.front-extension').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
+        $('.back-extension').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
+        $('.li-extension').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
+        $('.flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
+        $('.back-extension-display').css({"opacity": layout.props.backsideOpacity});
+
+        /** Corner circle*/
+        $('.corner-circle').css({"color": layout.props.cornerCircleColor, "display": "block", "border": "3px dotted " + layout.props.cornerCircleColor});
+        if(!layout.props.showCornerCircle){
+          $('.corner-circle').css({"display": "none"});
+        }
+        if(layout.props.useBoxShadow){
+          $('.corner-circle').css({"box-shadow": "3px 3px 3px rgba(0,0,0,0.3)"});
+        } else {
+          $('.corner-circle').css({"box-shadow": ""});
+        }
+
+        /**Cropping */
+        if(layout.props.cropType == 'cover'){
+          $('.image-display').css({"object-fit": "cover"});
+        } else if(layout.props.cropType == 'contain') {
+          $('.image-display').css({"object-fit": "contain"});
+        } else {
+            $('.image-display').css({"object-fit": "fill"});
+        }
+
+        /** Flipbuttons and Title */
+        if(!layout.props.showFlipButtons) {
+          $('.buttonRow').css("display", "none");
+        } else {
+          $('.container').css("height", "100%");
+          $('.container').css("height", $('.container').height()-60);
+          $('.buttonRow').css("display", "block");
         }
       }
+
       $('#flipButton').unbind().click( function () {
         if(!isLocked){
           isReversed = !isReversed;
