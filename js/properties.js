@@ -30,6 +30,7 @@ define( [], function () {
 		defaultValue: true
 	}
 
+
   var colorBackside = {
     		ref: "props.colorBackside",
     		label: "Color on Backside",
