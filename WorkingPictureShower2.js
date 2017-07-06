@@ -1,15 +1,16 @@
 define( [
   "qlik",
   "jquery",
-  "css!./style.css",
+  "css!./css/style.css",
   "text!./layout.html",
-  './properties'
-], function (qlik, $, cssContent,  template, props) {
+  './js/properties',
+  './js/functions'
+], function (qlik, $, cssContent,  template, props, funcs) {
   'use strict'
   var isReversed = false;
   var isLocked = false;
   var currentCss;
-  var path ="/extensions/WorkingPictureShower2/";
+  var path ="/extensions/WorkingPictureShower2";
 
 	return {
     template: template,
@@ -40,11 +41,11 @@ define( [
         var font_h3 = (0.65 + 1/numMeasures)*layout.props.imageSize/10*0.5;
         var font_h2 = (0.65 + 1/numMeasures)*layout.props.imageSize/10;
         if(layout.props.fontsizeMeasure1 != ""){
-          $(".measure1_title").css("font-size", layout.props.fontsizeMeasure1*0.5);
-          $(".measure1").css("font-size", layout.props.fontsizeMeasure1*1);
+          $(".measure1 h3").css("font-size", layout.props.fontsizeMeasure1*0.5);
+          $(".measure1 h2").css("font-size", layout.props.fontsizeMeasure1*1);
         } else {
-          $(".measure1_title").css("font-size", font_h3);
-          $(".measure1").css("font-size", font_h2);
+          $(".measure1 h3").css("font-size", font_h3);
+          $(".measure1 h2").css("font-size", font_h2);
         }
         if(layout.props.fontsizeMeasure2 != ""){
           $(".measure2_title").css("font-size", layout.props.fontsizeMeasure2*0.5);
@@ -75,21 +76,20 @@ define( [
         setUpCss();
       });
 
-
       function calculateLighterVersion(color, percent){
-          if(color.length == 3){
-            var i = 1;
-            while(color.length < 7){
-              color += color[i];
-              i++;
-                console.log(color);
-            }
-          } else if(color.length == 7){
-            var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
-            return ((0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1));
-          } else {
-            return color;
+        if(color.length == 3){
+          var i = 1;
+          while(color.length < 7){
+            color += color[i];
+            i++;
+              console.log(color);
           }
+        } else if(color.length == 7){
+          var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
+          return ((0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1));
+        } else {
+          return color;
+        }
       }
       function removeFlip() {
         $('#flipFunction_horizontal').remove();
@@ -100,13 +100,13 @@ define( [
       function addFlip(){
         removeFlip();
         if(layout.props.flipOrientation == "h" && !isReversed){
-          $('<link rel="stylesheet" id="flipFunction_horizontal" type="text/css" href="' + path + 'flipFunction_horizontal.css">').appendTo("head");
+          $('<link rel="stylesheet" id="flipFunction_horizontal" type="text/css" href="' + path + '/css/flipFunction_horizontal.css">').appendTo("head");
         } else if(layout.props.flipOrientation == 'v' && !isReversed){
-          $('<link rel="stylesheet" id="flipFunction_vertical" type="text/css" href="' + path + 'flipFunction_vertical.css">').appendTo("head");
+          $('<link rel="stylesheet" id="flipFunction_vertical" type="text/css" href="' + path + '/css/flipFunction_vertical.css">').appendTo("head");
         } else if(layout.props.flipOrientation =='v' && isReversed){
-          $('<link rel="stylesheet" id="flipFunction_reversed_vertical" type="text/css" href="' + path + 'flipFunction_reversed_vertical.css">').appendTo("head");
+          $('<link rel="stylesheet" id="flipFunction_reversed_vertical" type="text/css" href="' + path + '/css/flipFunction_reversed_vertical.css">').appendTo("head");
         } else {
-          $('<link rel="stylesheet" id="flipFunction_reversed_horizontal" type="text/css" href="' + path + 'flipFunction_reversed_horizontal.css">').appendTo("head");
+          $('<link rel="stylesheet" id="flipFunction_reversed_horizontal" type="text/css" href="' + path + '/css/flipFunction_reversed_horizontal.css">').appendTo("head");
         }
       }
       function removeCss(){
@@ -188,18 +188,18 @@ define( [
         if(layout.props.flipOrientation == "h"){
           if(isReversed){
             currentCss = "fh_r";
-            $('<link rel="stylesheet" id="horizontalCss_reversed" type="text/css" href="' + path + 'flipHorizontal_reversed.css">').appendTo("head");
+            $('<link rel="stylesheet" id="horizontalCss_reversed" type="text/css" href="' + path + '/css/flipHorizontal_reversed.css">').appendTo("head");
           } else {
             currentCss = "fh";
-            $('<link rel="stylesheet" id="horizontalCss" type="text/css" href="' + path + 'flipHorizontal.css">').appendTo("head");
+            $('<link rel="stylesheet" id="horizontalCss" type="text/css" href="' + path + '/css/flipHorizontal.css">').appendTo("head");
           }
         } else {
           if(isReversed){
             currentCss = "fv_r";
-            $('<link rel="stylesheet" id="verticalCss_reversed" type="text/css" href="' + path + 'flipVertical_reversed.css">').appendTo("head");
+            $('<link rel="stylesheet" id="verticalCss_reversed" type="text/css" href="' + path + '/css/flipVertical_reversed.css">').appendTo("head");
           } else {
             currentCss = "fv";
-            $('<link rel="stylesheet" id="verticalCss" type="text/css" href="' + path + 'flipVertical.css">').appendTo("head");
+            $('<link rel="stylesheet" id="verticalCss" type="text/css" href="' + path + '/css/flipVertical.css">').appendTo("head");
           }
         }
         if(!isLocked){
@@ -216,13 +216,13 @@ define( [
       $('#lockButton').unbind().click( function () {
         isLocked = !isLocked;
         if(isLocked){
-          $("#lockButton_img").attr("src", path + "lock_white.png");
+          $("#lockButton_img").attr("src", path + "/images/lock_white.png");
           console.log("Now: isLocked = true");
           $("#lockButton").css("background-color", "#da5555");
           $("#flipButton").css({"background-color": "#ccc"});
           removeFlip();
         } else {
-          $("#lockButton_img").attr("src", path + "lock_red.png");
+          $("#lockButton_img").attr("src", path + "/images/lock_red.png");
           console.log("Now: isLocked = false");
           $("#lockButton").css("background-color", "");
           $("#flipButton").css({"background-color": "#BADA55"});

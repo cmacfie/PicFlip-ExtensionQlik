@@ -89,6 +89,11 @@
 	position: relative;
 }
 
+.front-extension {
+		z-index: 2;
+	  position: relative;
+}
+
 
 /* hide back of pane during swap */
 .front-extension, .back-extension {

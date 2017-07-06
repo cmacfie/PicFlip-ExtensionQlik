@@ -1,6 +1,4 @@
 .front-extension {
-	z-index: 2;
-  position: relative;
 	transform: rotateX(0deg);
 }
 
