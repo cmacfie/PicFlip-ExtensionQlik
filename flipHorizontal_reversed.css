@@ -1,20 +1,9 @@
-
-/*  UPDATED! front pane, placed above back */
 .front-extension {
 	z-index: 2;
   position: relative;
-	transform: rotateY(-180deg);
+	transform: rotateY(180deg);
 }
 
-/* back, initially hidden pane */
 .back-extension  {
 	transform: rotateY(0deg);
-}
-
-.vertical.flip-container {
-	position: relative;
-}
-
-.vertical .back-extension {
-	transform: rotateX(0deg);
 }
