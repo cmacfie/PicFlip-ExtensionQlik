@@ -1,13 +1,13 @@
 
 /*  UPDATED! front pane, placed above back */
-.front {
+.front-extension {
 	z-index: 2;
   position: relative;
 	transform: rotateY(-180deg);
 }
 
 /* back, initially hidden pane */
-.back  {
+.back-extension  {
 	transform: rotateY(0deg);
 }
 
@@ -15,6 +15,6 @@
 	position: relative;
 }
 
-.vertical .back {
+.vertical .back-extension {
 	transform: rotateX(0deg);
 }

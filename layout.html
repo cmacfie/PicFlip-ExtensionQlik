@@ -32,16 +32,16 @@
 					<div class="selectable" id="selectable">
 						<div ng-show="{{$index}} == 0" style="cursor:pointer" class="flip-container"  >
 							<div class="flipper">
-								<div  class="front" style="background: {{layout.props.colorFrontside}}" >
+								<div  class="front-extension" style="background: {{layout.props.colorFrontside}}" >
                   <div class="corner-circle">
                     <h1 style="position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);">{{$parent.$index+1}}</h1>
                   </div>
 									<img class="image-display" ng-src="{{row.cells[0].qText}}">
 								</div>
 							</div>
-							<div class="back" style="background: {{layout.props.colorBackside}}">
-							<img class="image-display back-display" ng-src="{{row.cells[0].qText}}" >
-								<div class="back-title">
+							<div class="back-extension" style="background: {{layout.props.colorBackside}}">
+							<img class="image-display back-extension-display" ng-src="{{row.cells[0].qText}}" >
+								<div class="back-extension-title">
 
 										<div ng-if="row.cells[1]">
 											<h3 ng-if="useTitles"  class="measure1_title" >{{row.cells[1].qMeasureInfo.qFallbackTitle}}</h3>

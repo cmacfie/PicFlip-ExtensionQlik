@@ -78,7 +78,7 @@
 	transform-style: preserve-3d;
 }
 
-.flip-container, .front, .back {
+.flip-container, .front-extension, .back-extension {
 	width: 400px;
 	height: 400px;
 }
@@ -91,7 +91,7 @@
 
 
 /* hide back of pane during swap */
-.front, .back {
+.front-extension, .back-extension {
 	backface-visibility: hidden;
 	transform-style: preserve-3d;
 
@@ -119,7 +119,7 @@
 	text-align: left;
 }
 
-.back-display {
+.back-extension-display {
 
 }
 
@@ -142,9 +142,9 @@
 	border: 3px dotted #fff;
 }
 
-.back {
+.back-extension {
 }
 
-.back-title {
+.back-extension-title {
 	width:100%;
 }
