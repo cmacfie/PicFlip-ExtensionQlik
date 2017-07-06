@@ -137,7 +137,6 @@ define( [
             "left": "50%", "top": "0%",
             "transform": "translate(-50%, 0%)"
           });
-          $('.back-extension-title h2, h3').css("padding-top", "5px");
         } else if (verticalAlign == "center"){
           $('.back-extension-title').css({
             "position": "absolute",
@@ -150,7 +149,6 @@ define( [
             "left": "50%", "top": "100%",
             "transform": "translate(-50%, -100%)"
           });
-          $('.back-extension-title h2, h3').css("padding-bottom", "5px");
         }
         var textAlignment = layout.props.textAlignment;
         if(textAlignment == "L"){
