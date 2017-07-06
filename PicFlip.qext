@@ -1,6 +1,6 @@
 {
-	"name": "WorkingPictureShower2",
-	"description": "An extension with flippable pictures with measures on the back of them.",
+	"name": "PicFlip",
+	"description": "An extension with flippable pictures with measures on the back of them!",
 	"icon": "extension",
 	"type": "visualization",
 	"version": "1.0.0",

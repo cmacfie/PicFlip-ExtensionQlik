@@ -5,7 +5,7 @@ define( [], function(layout) {
   var isReversed = false;
   var isLocked = false;
   var currentCss;
-  var path ="/extensions/WorkingPictureShower2";
+  var path ="/extensions/PicFlip";
 
   function setTextCss(layout) {
     var numMeasures =  layout.qHyperCube.qMeasureInfo.length;
