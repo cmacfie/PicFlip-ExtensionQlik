@@ -11,7 +11,7 @@
 	margin:5px;
 }
 
-.qv-extension-image-display {
+.qv-extension-picflip-image-display {
 	display:block;
 	width: 100%;
 	height: 100%;
@@ -23,7 +23,7 @@
   margin: auto;
 }
 
-.qv-extension-button {
+.qv-extension-picflip-button {
 		margin-right:10px;
 		margin-bottom: 10px;
 		cursor:pointer;
@@ -35,40 +35,36 @@
     display: inline-block;
 }
 
-.qv-extension-lockButton {
+.qv-extension-picflip-lockButton {
   box-shadow:inset 0px 0px 0px 2px  #da5555;
 }
-.qv-extension-button img {
+
+.qv-extension-picflip-button img {
 	width:100%;
 	height:100%;
 }
 
-
-/* entire container, keeps perspective */
-.qv-extension-flip-container {
+.qv-extension-picflip-flip-container {
 	perspective: 1000px;
 	transform-style: preserve-3d;
 }
 
-.qv-extension-flip-container, .qv-extension-front, .qv-extension-back {
+.qv-extension-picflip-flip-container, .qv-extension-picflip-front, .qv-extension-picflip-back {
 	width: 400px;
 	height: 400px;
 }
 
-/* flip speed goes here */
-.qv-extension-flipper {
+.qv-extension-picflip-flipper {
 	transform-style: preserve-3d;
 	position: relative;
 }
 
-.qv-extension-front {
+.qv-extension-picflip-front {
 		z-index: 2;
 	  position: relative;
 }
 
-
-/* hide back of pane during swap */
-.qv-extension-front, .qv-extension-back {
+.qv-extension-picflip-front, .qv-extension-picflip-back {
 	backface-visibility: hidden;
 	transform-style: preserve-3d;
 
@@ -77,14 +73,14 @@
 	left: 0;
 }
 
-.qv-extension-buttonRow {
+.qv-extension-picflip-buttonRow {
 	height:60px;
 	text-align:right;
 	display:inline;
 	margin-bottom:3px;
 }
 
-.qv-extension-titleHolder {
+.qv-extension-picflip-titleHolder {
 	font-size: 50px;
 	left:0;
 	bottom: 0;
@@ -96,11 +92,11 @@
 	text-align: left;
 }
 
-.qv-extension-back-display {
+.qv-extension-picflip-back-display {
 
 }
 
-.qv-extension-buttonHolder {
+.qv-extension-picflip-buttonHolder {
 	display: inline-block;
 }
 
@@ -119,9 +115,9 @@
 	border: 3px dotted #fff;
 }
 
-.qv-extension-back {
+.qv-extension-picflip-back {
 }
 
-.qv-extension-back-title {
+.qv-extension-picflip-back-title {
 	width:100%;
 }

@@ -1,7 +1,7 @@
-.qv-extension-front {
+.qv-extension-picflip-front {
 	transform: rotateY(0deg);
 }
 
-.qv-extension-back  {
+.qv-extension-picflip-back  {
 	transform: rotateY(-180deg);
 }

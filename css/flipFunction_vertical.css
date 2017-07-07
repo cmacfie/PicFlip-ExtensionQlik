@@ -1,7 +1,7 @@
-.qv-extension-flip-container:hover .qv-extension-back {
+.qv-extension-picflip-flip-container:hover .qv-extension-picflip-back {
 	transform: rotateX(0deg);
 }
 
-.qv-extension-flip-container:hover .qv-extension-front {
+.qv-extension-picflip-flip-container:hover .qv-extension-picflip-front {
     transform: rotateX(180deg);
 }

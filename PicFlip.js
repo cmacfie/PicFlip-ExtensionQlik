@@ -35,11 +35,11 @@ define( [
           funcs.setUpCss(layout);
       });
 
-      $('.qv-extension-flipButton').unbind().click( function () {
+      $('.qv-extension-picflip-flipButton').unbind().click( function () {
         funcs.setFlipButton(layout);
       });
 
-      $('.qv-extension-lockButton').unbind().click( function () {
+      $('.qv-extension-picflip-lockButton').unbind().click( function () {
         funcs.setLockButton(layout);
       });
 
