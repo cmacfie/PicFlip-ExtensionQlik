@@ -1,37 +1,9 @@
-.qv-object-PictureShower div.qv-object-content-container {
-	overflow: auto;
-}
-
-
-.qv-object-PictureShower th {
-	border-top: 0px solid #fff;
-	border-bottom: 1px solid #ddd;
-	border-right: 1px solid #ddd;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	background:#bbbbbb;
-	vertical-align: middle;
-	cursor: default;
-	font-size: 12px;
-}
-.qv-object-PictureShower td {
-	background:#ff2200;
-}
-
-.qv-object-PictureShower td.numeric {
-	text-align: right;
-}
-.qv-object-PictureShower button {
-	width: 100%;
-}
-
-.ul-extension {
+.qv-extension-picflip-ul {
 	margin: 0 auto;
 	list-style: none outside none;
 }
 
-.li-extension {
+.qv-extension-picflip-li {
 	float: left;
 	display: block;
 	width: 400px;
@@ -39,7 +11,7 @@
 	margin:5px;
 }
 
-.image-display {
+.qv-extension-image-display {
 	display:block;
 	width: 100%;
 	height: 100%;
@@ -51,7 +23,7 @@
   margin: auto;
 }
 
-.myButton {
+.qv-extension-button {
 		margin-right:10px;
 		margin-bottom: 10px;
 		cursor:pointer;
@@ -63,40 +35,40 @@
     display: inline-block;
 }
 
-#lockButton {
-	border: 2px solid #da5555;
+.qv-extension-lockButton {
+  box-shadow:inset 0px 0px 0px 2px  #da5555;
 }
-.myButton_img {
+.qv-extension-button img {
 	width:100%;
 	height:100%;
 }
 
 
 /* entire container, keeps perspective */
-.flip-container {
+.qv-extension-flip-container {
 	perspective: 1000px;
 	transform-style: preserve-3d;
 }
 
-.flip-container, .front-extension, .back-extension {
+.qv-extension-flip-container, .qv-extension-front, .qv-extension-back {
 	width: 400px;
 	height: 400px;
 }
 
 /* flip speed goes here */
-.flipper {
+.qv-extension-flipper {
 	transform-style: preserve-3d;
 	position: relative;
 }
 
-.front-extension {
+.qv-extension-front {
 		z-index: 2;
 	  position: relative;
 }
 
 
 /* hide back of pane during swap */
-.front-extension, .back-extension {
+.qv-extension-front, .qv-extension-back {
 	backface-visibility: hidden;
 	transform-style: preserve-3d;
 
@@ -105,14 +77,14 @@
 	left: 0;
 }
 
-.buttonRow {
+.qv-extension-buttonRow {
 	height:60px;
 	text-align:right;
 	display:inline;
 	margin-bottom:3px;
 }
 
-.titleHolder {
+.qv-extension-titleHolder {
 	font-size: 50px;
 	left:0;
 	bottom: 0;
@@ -124,11 +96,11 @@
 	text-align: left;
 }
 
-.back-extension-display {
+.qv-extension-back-display {
 
 }
 
-.buttonHolder {
+.qv-extension-buttonHolder {
 	display: inline-block;
 }
 
@@ -147,9 +119,9 @@
 	border: 3px dotted #fff;
 }
 
-.back-extension {
+.qv-extension-back {
 }
 
-.back-extension-title {
+.qv-extension-back-title {
 	width:100%;
 }

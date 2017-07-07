@@ -1,13 +1,13 @@
-<div class="buttonRow" style="position: relative; display: block;">
-  <div class="titleHolder">
+<div class="qv-extension-buttonRow" style="position: relative; display: block;">
+  <div class="qv-extension-titleHolder">
     <h1>{{layout.props.title}}</h1>
   </div>
-  <div class="buttonHolder">
-    <button id="flipButton" type="button" class="myButton">
-      <img id="flipButton_img" class="myButton_img" src="/extensions/PicFlip/images/flip.png">
+  <div class="qv-extension-buttonHolder">
+    <button type="button" class="qv-extension-button qv-extension-flipButton">
+      <img class="qv-extension-button" src="/extensions/PicFlip/images/flip.png">
     </button>
-    <button id="lockButton" type="button" class="myButton">
-      <img id="lockButton_img" class="myButton_img" src="/extensions/PicFlip/images/lock_white.png">
+    <button type="button" class="qv-extension-button qv-extension-lockButton">
+      <img class="qv-extension-button" src="/extensions/PicFlip/images/lock_white.png">
     </button>
   </div>
   <div id="divider" style="width:100%; height:1px; background-color: #000;"></div>
@@ -25,23 +25,23 @@
 					<th ng-repeat="mea in layout.qHyperCube.qMeasureInfo" ng-bind="mea.qFallbackTitle" />
 			</tr>
 		</thead>
-	<ul class="ul-extension">
+	<ul class="qv-extension-picflip-ul">
 		<span id="row" ng-repeat="row in table.rows track by $index" >
-				<li class="li-extension">
+				<li class="qv-extension-picflip-li">
 				<span ng-repeat="cell in row.cells track by $index" ng-class="{'selected':cell.selected,'numeric':cell.qNum}" qva-activate="cell.select($event)">
 					<div class="selectable" id="selectable">
-						<div ng-show="{{$index}} == 0" style="cursor:pointer" class="flip-container"  >
-							<div class="flipper">
-								<div  class="front-extension" style="background: {{layout.props.colorFrontside}}" >
-                  <div class="corner-circle">
+						<div ng-show="{{$index}} == 0" style="cursor:pointer" class="qv-extension-flip-container"  >
+							<div class="qv-extension-flipper">
+								<div  class="qv-extension-front" style="background: {{layout.props.colorFrontside}}" >
+                  <div class="qv-extension-corner-circle">
                     <h1 style="position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);">{{$parent.$index+1}}</h1>
                   </div>
-									<img class="image-display" ng-src="{{row.cells[0].qText}}">
+									<img class="qv-extension-image-display" ng-src="{{row.cells[0].qText}}">
 								</div>
 							</div>
-							<div class="back-extension" style="background: #{{layout.props.colorBackside}}">
-							<img class="image-display back-extension-display" ng-src="{{row.cells[0].qText}}" >
-								<div class="back-extension-title">
+							<div class="qv-extension-back" style="background: #{{layout.props.colorBackside}}">
+							<img class="qv-extension-image-display qv-extension-back-display" ng-src="{{row.cells[0].qText}}" >
+								<div class="qv-extension-back-title">
 
 										<div  class="measure1"  ng-if="row.cells[1]">
 											<h3 ng-if="useTitles">{{row.cells[1].qMeasureInfo.qFallbackTitle}}</h3>

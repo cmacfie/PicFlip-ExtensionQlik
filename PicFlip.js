@@ -35,12 +35,12 @@ define( [
           funcs.setUpCss(layout);
       });
 
-      $('#flipButton').unbind().click( function () {
+      $('.qv-extension-flipButton').unbind().click( function () {
         funcs.setFlipButton(layout);
       });
 
-      $('#lockButton').unbind().click( function () {
-        funcs.setLockButton();
+      $('.qv-extension-lockButton').unbind().click( function () {
+        funcs.setLockButton(layout);
       });
 
       return qlik.Promise.resolve();

@@ -1,7 +1,7 @@
-.front-extension {
+.qv-extension-front {
 	transform: rotateX(0deg);
 }
 
-.back-extension  {
+.qv-extension-back  {
 	transform: rotateX(-180deg);
 }
