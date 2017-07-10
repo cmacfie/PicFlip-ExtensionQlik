@@ -1,80 +1,111 @@
-define( [], function(layout) {
+define( ["jquery"], function($) {
 	'use strict';
 
 
-  var isReversed = false;
-  var isLocked = false;
-  var currentCss;
+
   var path ="/extensions/PicFlip";
 
-  function setTextCss(layout) {
+  function setTextCss($element, layout) {
     var numMeasures =  layout.qHyperCube.qMeasureInfo.length;
     var font_h3 = Math.round((0.65 + 1/numMeasures)*layout.props.imageSize/10*0.5);
     var font_h2 = Math.round((0.65 + 1/numMeasures)*layout.props.imageSize/10);
     if(layout.props.fontsizeMeasure1 != ""){
-      $('.measure1 h3').css("font-size", layout.props.fontsizeMeasure1*0.5);
-      $(".measure1 h2").css("font-size", layout.props.fontsizeMeasure1*1);
+      $element.find('.measure1 h3').css("font-size", layout.props.fontsizeMeasure1*0.5);
+      $element.find(".measure1 h2").css("font-size", layout.props.fontsizeMeasure1*1);
     } else {
-      $('.measure1 h3').css({"font-size": font_h3});
-      $(".measure1 h2").css({"font-size": font_h2});
+      $element.find('.measure1 h3').css({"font-size": font_h3});
+      $element.find(".measure1 h2").css({"font-size": font_h2});
     }
     if(layout.props.fontsizeMeasure2 != ""){
-      $(".measure2 h3").css("font-size", layout.props.fontsizeMeasure2*0.5);
-      $(".measure2 h2").css("font-size", layout.props.fontsizeMeasure2*1);
+      $element.find(".measure2 h3").css("font-size", layout.props.fontsizeMeasure2*0.5);
+      $element.find(".measure2 h2").css("font-size", layout.props.fontsizeMeasure2*1);
     } else {
-      $(".measure2 h3").css("font-size", font_h3);
-      $(".measure2 h2").css("font-size", font_h2);
+      $element.find(".measure2 h3").css("font-size", font_h3);
+      $element.find(".measure2 h2").css("font-size", font_h2);
     }
     if(layout.props.fontsizeMeasure3 != ""){
-      $(".measure3 h3").css("font-size", layout.props.fontsizeMeasure3*0.5);
-      $(".measure3 h2").css("font-size", layout.props.fontsizeMeasure3*1);
+      $element.find(".measure3 h3").css("font-size", layout.props.fontsizeMeasure3*0.5);
+      $element.find(".measure3 h2").css("font-size", layout.props.fontsizeMeasure3*1);
     } else {
-      $(".measure3 h3").css("font-size", font_h3);
-      $(".measure3 h2").css("font-size", font_h2);
+      $element.find(".measure3 h3").css("font-size", font_h3);
+      $element.find(".measure3 h2").css("font-size", font_h2);
     }
     if(layout.props.colorMeasure1.length != 0){
-      $(".measure1 h2").css("color", "#"+layout.props.colorMeasure1);
-      $(".measure1 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure1, 0.15)));
+      $element.find(".measure1 h2").css("color", "#"+layout.props.colorMeasure1);
+      $element.find(".measure1 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure1, 0.15)));
     }
     if(layout.props.colorMeasure2 != 0){
-      $(".measure2 h2").css("color", "#" + layout.props.colorMeasure2);
-      $(".measure2 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure2, 0.15)));
+      $element.find(".measure2 h2").css("color", "#" + layout.props.colorMeasure2);
+      $element.find(".measure2 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure2, 0.15)));
     }
     if(layout.props.colorMeasure3 != 0){
-      $(".measure3 h2").css("color", "#" + layout.props.colorMeasure3);
-      $(".measure3 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure3, 0.15)));
+      $element.find(".measure3 h2").css("color", "#" + layout.props.colorMeasure3);
+      $element.find(".measure3 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure3, 0.15)));
     }
   }
 
-  function setUpCss(layout){
-    removeCss();
-    setTextCss(layout);
-    setOtherCssWithProperties(layout);
-    alignImages(layout);
-    setFlipOrientation(layout);
-    if(!isLocked){
-      $(".qv-extension-picflip-flipButton").css({"background-color": "#BADA55"});
-      addFlip(layout);
+
+
+	function flipElement(event, element, layout){
+			var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
+			var newFrontRotation;
+			console.log(layout.props.isLocked);
+			console.log(layout.props.isReversed);
+			var newBackRotation;
+			if(layout.props.isReversed){
+					newFrontRotation = (event.type == 'mouseleave' ? 180 : 0);
+					newBackRotation = (event.type == 'mouseleave' ? 0 : 180);
+			} else {
+					newFrontRotation = (event.type == 'mouseleave' ? 0 : 180);
+					newBackRotation = (event.type == 'mouseleave' ? 180 : 0);
+			}
+			if(!layout.props.isLocked){
+				 $(element).find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
+				 $(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
+			}
+	}
+
+  function setUpCss($element, layout){
+    removeCss($element, layout);
+    setTextCss($element, layout);
+    setOtherCssWithProperties($element, layout);
+    alignImages($element, layout);
+    setFlipOrientation($element, layout);
+    if(!layout.props.isLocked){
+			$element.find(".qv-extension-picflip-flipButton").css({"background-color": "#BADA55"});
+			var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
+			var newFrontRotation;
+			var newBackRotation;
+			if(layout.props.isReversed){
+					newFrontRotation = (true ? 180 : 0);
+					newBackRotation = (true ? 0 : 180);
+			} else {
+					newFrontRotation = (true ? 0 : 180);
+					newBackRotation = (true ? 180 : 0);
+			}
+			$element.find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
+		 	$element.find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
     }
   }
 
-  function setFlipButton(layout){
-    if(!isLocked){
-      isReversed = !isReversed;
-      setUpCss(layout);
+  function setFlipButton($element, layout){
+    if(!layout.props.isLocked){
+      layout.props.isReversed = !(layout.props.isReversed);
+      setUpCss($element, layout);
     }
   }
 
-  function setLockButton(layout){
-    isLocked = !isLocked;
+  function setLockButton($element, layout){
+    layout.props.isLocked = !(layout.props.isLocked);
     if(isLocked){
-      $(".qv-extension-picflip-lockButton").css("background-color", "#da5555");
-      $(".qv-extension-picflip-flipButton").css({"background-color": "#ccc"});
-      removeFlip();
+			$element.find('.qv-extension-picflip-lockButton').css("background-color", "#da5555");
+      $element.find('.qv-extension-picflip-flipButton').css({"background-color": "#ccc"});
+    //  removeFlip($element, layout);
     } else {
-      $(".qv-extension-picflip-lockButton").css("background-color", "");
-      $(".qv-extension-picflip-flipButton").css({"background-color": "#BADA55"});
-      addFlip(layout);
+			alert($element.find('.qv-extension-picflip-lockButton').length);
+      $element.find('.qv-extension-picflip-lockButton').css("background-color", "");
+      $element.find('.qv-extension-picflip-flipButton').css({"background-color": "#BADA55"});
+      //addFlip($element, layout);
     }
   }
 
@@ -92,51 +123,52 @@ define( [], function(layout) {
       return color;
     }
   }
-  function removeFlip() {
-    $('#flipFunction_horizontal').remove();
-    $('#flipFunction_vertical').remove();
-    $('#flipFunction_reversed_vertical').remove();
-    $('#flipFunction_reversed_horizontal').remove();
+	/*
+  function removeFlip($element, layout) {
+    $('#flipFunction_horizontal' + layout.qInfo.qId).remove();
+    $('#flipFunction_vertical' + layout.qInfo.qId).remove();
+    $('#flipFunction_reversed_vertical' + layout.qInfo.qId).remove();
+    $('#flipFunction_reversed_horizontal' + layout.qInfo.qId).remove();
   }
-  function addFlip(layout){
-    removeFlip();
+  function addFlip($element, layout){
+    removeFlip($element, layout);
     if(layout.props.flipOrientation == "h" && !isReversed){
-      $('<link rel="stylesheet" id="flipFunction_horizontal" type="text/css" href="' + path + '/css/flipFunction_horizontal.css">').appendTo("head");
+      $element.append('<link rel="stylesheet" id="flipFunction_horizontal'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_horizontal.css">');
     } else if(layout.props.flipOrientation == 'v' && !isReversed){
-      $('<link rel="stylesheet" id="flipFunction_vertical" type="text/css" href="' + path + '/css/flipFunction_vertical.css">').appendTo("head");
+      $element.append('<link rel="stylesheet" id="flipFunction_vertical'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_vertical.css">');
     } else if(layout.props.flipOrientation =='v' && isReversed){
-      $('<link rel="stylesheet" id="flipFunction_reversed_vertical" type="text/css" href="' + path + '/css/flipFunction_reversed_vertical.css">').appendTo("head");
+      $element.append('<link rel="stylesheet" id="flipFunction_reversed_vertical'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_reversed_vertical.css">');
     } else {
-      $('<link rel="stylesheet" id="flipFunction_reversed_horizontal" type="text/css" href="' + path + '/css/flipFunction_reversed_horizontal.css">').appendTo("head");
+      $element.append('<link rel="stylesheet" id="flipFunction_reversed_horizontal'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_reversed_horizontal.css">');
     }
-  }
-  function removeCss(){
-    $('#verticalCss').remove();
-    $('#horizontalCss').remove();
-    $('#verticalCss_reversed').remove();
-    $('#horizontalCss_reversed').remove();
+  }*/
+  function removeCss($element, layout){/*
+    $('#verticalCss' + layout.qInfo.qId).remove();
+    $('#horizontalCss' + layout.qInfo.qId).remove();
+    $('#verticalCss_reversed' + layout.qInfo.qId).remove();
+    $('#horizontalCss_reversed' + layout.qInfo.qId).remove();*/
     $('.qv-extension-picflip-back-title').removeClass('align-top');
     $('.qv-extension-picflip-back-title').removeClass('align-center');
     $('.qv-extension-picflip-back-title').removeClass('align-bottom');
   }
 
-  function alignImages(layout) {
+  function alignImages($element, layout) {
     var verticalAlign = layout.props.textPlacement_vertically;
-    $('.qv-extension-picflip-back-title h2, h3').css("padding", "0");
+    $element.find('.qv-extension-picflip-back-title h2, h3').css("padding", "0");
     if(verticalAlign == "top"){
-      $('.qv-extension-picflip-back-title').css({
+      $element.find('.qv-extension-picflip-back-title').css({
         "position": "absolute",
         "left": "50%", "top": "0%",
         "transform": "translate(-50%, 0%)"
       });
     } else if (verticalAlign == "center"){
-      $('.qv-extension-picflip-back-title').css({
+      $element.find('.qv-extension-picflip-back-title').css({
         "position": "absolute",
         "left": "50%", "top": "50%",
         "transform": "translate(-50%, -50%)"
       });
     } else if (verticalAlign == "bottom"){
-      $('.qv-extension-picflip-back-title').css({
+      $element.find('.qv-extension-picflip-back-title').css({
         "position": "absolute",
         "left": "50%", "top": "100%",
         "transform": "translate(-50%, -100%)"
@@ -144,79 +176,80 @@ define( [], function(layout) {
     }
     var textAlignment = layout.props.textAlignment;
     if(textAlignment == "L"){
-      $('.qv-extension-picflip-back-title').css({"text-align":"left"});
-      $('.qv-extension-picflip-back-title h2, h3').css("padding-left", "5px");
+      $element.find('.qv-extension-picflip-back-title').css({"text-align":"left"});
+      $element.find('.qv-extension-picflip-back-title h2, h3').css("padding-left", "5px");
     } else if(textAlignment == "C"){
-      $('.qv-extension-picflip-back-title').css({"text-align":"center"});
+      $element.find('.qv-extension-picflip-back-title').css({"text-align":"center"});
     } else {
-      $('.qv-extension-picflip-back-title').css({"text-align":"right"});
-      $('.qv-extension-picflip-back-title h2, h3').css("padding-right", "5px");
+      $element.find('.qv-extension-picflip-back-title').css({"text-align":"right"});
+      $element.find('.qv-extension-picflip-back-title h2, h3').css("padding-right", "5px");
     }
   }
 
-  function setFlipOrientation(layout){
-    if(layout.props.flipOrientation == "h"){
+  function setFlipOrientation($element, layout){
+    /*if(layout.props.flipOrientation == "h"){
       if(isReversed){
-        currentCss = "fh_r";
-        $('<link rel="stylesheet" id="horizontalCss_reversed" type="text/css" href="' + path + '/css/flipHorizontal_reversed.css">').appendTo("head");
+        $element.currentCss = "fh_r";
+        $element.append('<link rel="stylesheet" id="horizontalCss_reversed' + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipHorizontal_reversed.css">');
       } else {
-        currentCss = "fh";
-        $('<link rel="stylesheet" id="horizontalCss" type="text/css" href="' + path + '/css/flipHorizontal.css">').appendTo("head");
+        $element.currentCss = "fh";
+        $element.append('<link rel="stylesheet" id="horizontalCss'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipHorizontal.css">');
       }
     } else {
       if(isReversed){
-        currentCss = "fv_r";
-        $('<link rel="stylesheet" id="verticalCss_reversed" type="text/css" href="' + path + '/css/flipVertical_reversed.css">').appendTo("head");
+        $element.currentCss = "fv_r";
+        $element.append('<link rel="stylesheet" id="verticalCss_reversed'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipVertical_reversed.css">');
       } else {
-        currentCss = "fv";
-        $('<link rel="stylesheet" id="verticalCss" type="text/css" href="' + path + '/css/flipVertical.css">').appendTo("head");
+        $element.currentCss = "fv";
+        $element.append('<link rel="stylesheet" id="verticalCss'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipVertical.css">');
       }
-    }
+    }*/
   }
 
-function setOtherCssWithProperties(layout){
-  $('.qv-extension-picflip-titleHolder').css("width", $('.container').width() - $('.qv-extension-picflip-buttonHolder').width());
-  $('.qv-extension-picflip-flipper').css("transition", layout.props.flipSpeed + "s");
-  $('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
-  $('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
-  $('.qv-extension-picflip-li').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
-  $('.qv-extension-picflip-flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
-  $('.qv-extension-picflip-back-display').css({"opacity": layout.props.backsideOpacity});
+function setOtherCssWithProperties($element, layout){
+  $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.container').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
+  $element.find('.qv-extension-picflip-flipper').css("transition", layout.props.flipSpeed + "s");
+  $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
+  $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
+  $element.find('.qv-extension-picflip-li').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
+  $element.find('.qv-extension-picflip-flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
+  $element.find('.qv-extension-picflip-back-display').css({"opacity": layout.props.backsideOpacity});
 
   /** Corner circle*/
-  $('.qv-extension-picflip-corner-circle').css({"color": layout.props.cornerCircleColor, "display": "block", "border": "3px dotted " + layout.props.cornerCircleColor});
+  $element.find('.qv-extension-picflip-corner-circle').css({"color": layout.props.cornerCircleColor, "display": "block", "border": "3px dotted " + layout.props.cornerCircleColor});
   if(!layout.props.showCornerCircle){
-    $('.qv-extension-picflip-corner-circle').css({"display": "none"});
+    $element.find('.qv-extension-picflip-corner-circle').css({"display": "none"});
   }
   if(layout.props.useBoxShadow){
-    $('.qv-extension-picflip-corner-circle').css({"box-shadow": "3px 3px 3px rgba(0,0,0,0.3)"});
+    $element.find('.qv-extension-picflip-corner-circle').css({"box-shadow": "3px 3px 3px rgba(0,0,0,0.3)"});
   } else {
-    $('.qv-extension-picflip-corner-circle').css({"box-shadow": ""});
+    $element.find('.qv-extension-picflip-corner-circle').css({"box-shadow": ""});
   }
 
   /**Cropping */
   if(layout.props.cropType == 'cover'){
-    $('.qv-extension-picflip-image-display').css({"object-fit": "cover"});
+    $element.find('.qv-extension-picflip-image-display').css({"object-fit": "cover"});
   } else if(layout.props.cropType == 'contain') {
-    $('.qv-extension-picflip-image-display').css({"object-fit": "contain"});
+    $element.find('.qv-extension-picflip-image-display').css({"object-fit": "contain"});
   } else {
-      $('.qv-extension-picflip-image-display').css({"object-fit": "fill"});
+      $element.find('.qv-extension-picflip-image-display').css({"object-fit": "fill"});
   }
 
   /** Flipbuttons and Title */
   if(!layout.props.showFlipButtons) {
-    $('.qv-extension-picflip-buttonRow').css("display", "none");
+    $element.find('.qv-extension-picflip-buttonRow').css("display", "none");
   } else {
-    $('.container').css("height", "100%");
-    $('.container').css("height", $('.container').height()-60);
-    $('.qv-extension-picflip-buttonRow').css("display", "block");
+    $element.find('.container').css("height", "100%");
+    $element.find('.container').css("height", $element.find('.container').height()-60);
+    $element.find('.qv-extension-picflip-buttonRow').css("display", "block");
   }
 }
 
   return {
     setUpCss : setUpCss,
     setFlipButton : setFlipButton,
-    setLockButton : setLockButton
+    setLockButton : setLockButton,
+		flipElement : flipElement
 
   }
 

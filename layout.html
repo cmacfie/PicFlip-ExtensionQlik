@@ -30,7 +30,7 @@
 				<li class="qv-extension-picflip-li">
 				<span ng-repeat="cell in row.cells track by $index" ng-class="{'selected':cell.selected,'numeric':cell.qNum}" qva-activate="cell.select($event)">
 					<div class="selectable" id="selectable">
-						<div ng-show="{{$index}} == 0" style="cursor:pointer" class="qv-extension-picflip-flip-container"  >
+						<div ng-show="{{$index}} == 0" style="cursor:pointer" class="qv-extension-picflip-flip-container">
 							<div class="qv-extension-picflip-flipper">
 								<div  class="qv-extension-picflip-front" style="background: {{layout.props.colorFrontside}}" >
                   <div class="qv-extension-picflip-corner-circle">
