@@ -14,17 +14,6 @@ define( [], function () {
 		max: 3
 	};
 
-	var isLocked = {
-			type:"boolean",
-			ref:"props.isLocked",
-			defaultValue : false
-	};
-
-	var isReversed = {
-			type:"boolean",
-			ref:"props.isReversed",
-			defaultValue : false
-	};
 
 
 	var useTitles = {
@@ -42,6 +31,17 @@ define( [], function () {
 		defaultValue: true
 	}
 
+	var isLocked = {
+			type:"boolean",
+			ref:"props.isLocked",
+			defaultValue: false
+	};
+
+	var isReversed = {
+			type:"boolean",
+			ref:"props.isReversed",
+			defaultValue : false
+	};
 
   var colorBackside = {
     		ref: "props.colorBackside",

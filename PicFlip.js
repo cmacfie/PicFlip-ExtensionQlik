@@ -28,8 +28,6 @@ define( [
 		},
     paint: function ($element, layout) {
       this.$scope.id = layout.qInfo.qId;
-      this.$scope.myElement = $element;
-      this.$scope.layout1 = layout;
       console.log(this);
       this.$scope.qlik=qlik;
       if ( !this.$scope.table ) {
@@ -37,23 +35,21 @@ define( [
       }
       this.$scope.useTitles = layout.props.useTitles;
       $( document ).ready(function() {
-          funcs.setUpCss($element, layout);
+        funcs.setUpCss($element, layout);
 
-      $element.find('.qv-extension-picflip-flipButton').unbind().click( function () {
-        funcs.setFlipButton($element, layout);
-      });
+        $element.find('.qv-extension-picflip-flipButton').unbind().click( function () {
+          funcs.setFlipButton($element, layout);
+        });
 
-      $element.find('.qv-extension-picflip-lockButton').unbind().click( function () {
-        funcs.setLockButton($element, layout);
-      });
-    	var frameHolder = $('.qv-extension-picflip-flip-container');
-      var hey = "hey";
-      $element.find('.qv-extension-picflip-flip-container').unbind().on("mouseenter", function(event){
-  			funcs.flipElement(event, this, layout);
-    	})
-    	$element.find('.qv-extension-picflip-flip-container').on("mouseleave", function(event){
-          funcs.flipElement(event, this, layout);
-    	})
+        $element.find('.qv-extension-picflip-lockButton').unbind().click( function () {
+          funcs.setLockButton($element, layout);
+        });
+        $element.find('.qv-extension-picflip-flip-container').unbind().on("mouseenter", function(event){
+    			funcs.flipElement(event.type, this, layout);
+      	})
+      	$element.find('.qv-extension-picflip-flip-container').on("mouseleave", function(event){
+          funcs.flipElement(event.type, this, layout);
+      	})
 
 /*
       console.log("Element ",$element);

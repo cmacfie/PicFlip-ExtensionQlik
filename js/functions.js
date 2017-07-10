@@ -1,8 +1,6 @@
 define( ["jquery"], function($) {
 	'use strict';
 
-
-
   var path ="/extensions/PicFlip";
 
   function setTextCss($element, layout) {
@@ -46,46 +44,29 @@ define( ["jquery"], function($) {
 
 
 
-	function flipElement(event, element, layout){
-			var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
-			var newFrontRotation;
-			console.log(layout.props.isLocked);
-			console.log(layout.props.isReversed);
-			var newBackRotation;
-			if(layout.props.isReversed){
-					newFrontRotation = (event.type == 'mouseleave' ? 180 : 0);
-					newBackRotation = (event.type == 'mouseleave' ? 0 : 180);
-			} else {
-					newFrontRotation = (event.type == 'mouseleave' ? 0 : 180);
-					newBackRotation = (event.type == 'mouseleave' ? 180 : 0);
-			}
-			if(!layout.props.isLocked){
+	function flipElement(eventType, element, layout){
+		if(!layout.props.isLocked){
+				var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
+				var newFrontRotation;
+				var newBackRotation;
+				if(layout.props.isReversed){
+						newFrontRotation = (eventType == 'mouseleave' ? 180 : 0);
+						newBackRotation = (eventType == 'mouseleave' ? 0 : 180);
+				} else {
+						newFrontRotation = (eventType == 'mouseleave' ? 0 : 180);
+						newBackRotation = (eventType == 'mouseleave' ? 180 : 0);
+				}
 				 $(element).find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
 				 $(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
-			}
-	}
+				}
+		}
 
   function setUpCss($element, layout){
     removeCss($element, layout);
     setTextCss($element, layout);
     setOtherCssWithProperties($element, layout);
     alignImages($element, layout);
-    setFlipOrientation($element, layout);
-    if(!layout.props.isLocked){
-			$element.find(".qv-extension-picflip-flipButton").css({"background-color": "#BADA55"});
-			var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
-			var newFrontRotation;
-			var newBackRotation;
-			if(layout.props.isReversed){
-					newFrontRotation = (true ? 180 : 0);
-					newBackRotation = (true ? 0 : 180);
-			} else {
-					newFrontRotation = (true ? 0 : 180);
-					newBackRotation = (true ? 180 : 0);
-			}
-			$element.find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
-		 	$element.find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
-    }
+		flipElement('mouseleave', $element.find('.qv-extension-picflip-flip-container'), layout);
   }
 
   function setFlipButton($element, layout){
@@ -97,16 +78,15 @@ define( ["jquery"], function($) {
 
   function setLockButton($element, layout){
     layout.props.isLocked = !(layout.props.isLocked);
-    if(isLocked){
+    if(layout.props.isLocked){
 			$element.find('.qv-extension-picflip-lockButton').css("background-color", "#da5555");
       $element.find('.qv-extension-picflip-flipButton').css({"background-color": "#ccc"});
-    //  removeFlip($element, layout);
     } else {
-			alert($element.find('.qv-extension-picflip-lockButton').length);
       $element.find('.qv-extension-picflip-lockButton').css("background-color", "");
       $element.find('.qv-extension-picflip-flipButton').css({"background-color": "#BADA55"});
-      //addFlip($element, layout);
+
     }
+		setUpCss($element, layout);
   }
 
   function calculateLighterVersion(color, percent){
@@ -123,30 +103,7 @@ define( ["jquery"], function($) {
       return color;
     }
   }
-	/*
-  function removeFlip($element, layout) {
-    $('#flipFunction_horizontal' + layout.qInfo.qId).remove();
-    $('#flipFunction_vertical' + layout.qInfo.qId).remove();
-    $('#flipFunction_reversed_vertical' + layout.qInfo.qId).remove();
-    $('#flipFunction_reversed_horizontal' + layout.qInfo.qId).remove();
-  }
-  function addFlip($element, layout){
-    removeFlip($element, layout);
-    if(layout.props.flipOrientation == "h" && !isReversed){
-      $element.append('<link rel="stylesheet" id="flipFunction_horizontal'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_horizontal.css">');
-    } else if(layout.props.flipOrientation == 'v' && !isReversed){
-      $element.append('<link rel="stylesheet" id="flipFunction_vertical'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_vertical.css">');
-    } else if(layout.props.flipOrientation =='v' && isReversed){
-      $element.append('<link rel="stylesheet" id="flipFunction_reversed_vertical'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_reversed_vertical.css">');
-    } else {
-      $element.append('<link rel="stylesheet" id="flipFunction_reversed_horizontal'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipFunction_reversed_horizontal.css">');
-    }
-  }*/
-  function removeCss($element, layout){/*
-    $('#verticalCss' + layout.qInfo.qId).remove();
-    $('#horizontalCss' + layout.qInfo.qId).remove();
-    $('#verticalCss_reversed' + layout.qInfo.qId).remove();
-    $('#horizontalCss_reversed' + layout.qInfo.qId).remove();*/
+  function removeCss($element, layout){
     $('.qv-extension-picflip-back-title').removeClass('align-top');
     $('.qv-extension-picflip-back-title').removeClass('align-center');
     $('.qv-extension-picflip-back-title').removeClass('align-bottom');
@@ -186,26 +143,6 @@ define( ["jquery"], function($) {
     }
   }
 
-  function setFlipOrientation($element, layout){
-    /*if(layout.props.flipOrientation == "h"){
-      if(isReversed){
-        $element.currentCss = "fh_r";
-        $element.append('<link rel="stylesheet" id="horizontalCss_reversed' + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipHorizontal_reversed.css">');
-      } else {
-        $element.currentCss = "fh";
-        $element.append('<link rel="stylesheet" id="horizontalCss'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipHorizontal.css">');
-      }
-    } else {
-      if(isReversed){
-        $element.currentCss = "fv_r";
-        $element.append('<link rel="stylesheet" id="verticalCss_reversed'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipVertical_reversed.css">');
-      } else {
-        $element.currentCss = "fv";
-        $element.append('<link rel="stylesheet" id="verticalCss'  + layout.qInfo.qId + '" type="text/css" href="' + path + '/css/flipVertical.css">');
-      }
-    }*/
-  }
-
 function setOtherCssWithProperties($element, layout){
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.container').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
   $element.find('.qv-extension-picflip-flipper').css("transition", layout.props.flipSpeed + "s");
@@ -214,6 +151,7 @@ function setOtherCssWithProperties($element, layout){
   $element.find('.qv-extension-picflip-li').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
   $element.find('.qv-extension-picflip-flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
   $element.find('.qv-extension-picflip-back-display').css({"opacity": layout.props.backsideOpacity});
+
 
   /** Corner circle*/
   $element.find('.qv-extension-picflip-corner-circle').css({"color": layout.props.cornerCircleColor, "display": "block", "border": "3px dotted " + layout.props.cornerCircleColor});
@@ -242,6 +180,13 @@ function setOtherCssWithProperties($element, layout){
     $element.find('.container').css("height", "100%");
     $element.find('.container').css("height", $element.find('.container').height()-60);
     $element.find('.qv-extension-picflip-buttonRow').css("display", "block");
+		if(!layout.props.isLocked){
+				$element.find(".qv-extension-picflip-flipButton").css({"background-color": "#BADA55"});
+				$element.find(".qv-extension-picflip-lockButton").css({"background-color": ""});
+		} else {
+				$element.find(".qv-extension-picflip-flipButton").css({"background-color": ""});
+				$element.find(".qv-extension-picflip-lockButton").css({"background-color": "#da5555"});
+		}
   }
 }
 
