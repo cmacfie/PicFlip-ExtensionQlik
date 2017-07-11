@@ -148,17 +148,14 @@ define( ["jquery"], function($) {
 
 function setOtherCssWithProperties($element, layout){
 	var containerWidth = $element.find('.qv-extension-picflip-flip-mainContainer').width();
+	var containerHeight = $element.find('.qv-extension-picflip-flip-mainContainer').width()
 	var padding  = $('.qv-extension-picflip-li').css("padding-top").slice(0,1)*2+1;
-	var size = (containerWidth/(layout.props.imageSize)) - padding;
+	var size = ((containerWidth > containerHeight ? containerWidth : containerHeight)/(layout.props.imageSize)) - padding;
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.qv-extension-picflip-flip-mainContainer').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
-  $element.find('.qv-extension-picflip-front').css({"transition": 0 + "s", "width": size, "height": size});
-  $element.find('.qv-extension-picflip-back').css({"transition": 0 + "s", "width": size, "height": size});
+  $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
+  $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
 	$element.find('.qv-extension-picflip-li').css({"width":size, "height": size});
 	$element.find('.qv-extension-picflip-flip-container').css({"width": size, "height":size});
-	setTimeout(function(){ //Resize 0 sec, then set flip speed
-		 $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s"});
-     $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s"});
-  }, 5);
   $element.find('.qv-extension-picflip-back-display').css({"opacity": layout.props.backsideOpacity});
 
 
