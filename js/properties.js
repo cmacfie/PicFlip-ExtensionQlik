@@ -5,7 +5,7 @@ define( [], function () {
 	// *****************************************************************************
 	var dimensions = {
 		uses: "dimensions",
-		min: 0,
+		min: 1,
 		max: 1
 	};
 	var measures = {
@@ -14,7 +14,9 @@ define( [], function () {
 		max: 3
 	};
 
-
+	// *****************************************************************************
+	// Appearance section
+	// *****************************************************************************
 
 	var useTitles = {
 		type: "boolean",
@@ -69,6 +71,7 @@ define( [], function () {
     		ref: "props.colorFrontside",
     		label: "Color on Frontside",
     		type: "string",
+				defaultValue : ""
 	};
 	var colorMeasure1 = {
     		ref: "props.colorMeasure1",
@@ -272,10 +275,6 @@ define( [], function () {
 	};
 
 
-
-	// *****************************************************************************
-	// Appearance section
-	// *****************************************************************************
 	var appearanceSection = {
 		uses: "settings",
     items: {
@@ -305,6 +304,7 @@ define( [], function () {
 				type:"items",
 				label: "Image Customizaiton",
 				items : {
+
 					showFlipButtons : showFlipButtons,
 					isReversed : isReversed,
 					isLocked : isLocked,
@@ -330,7 +330,7 @@ define( [], function () {
 		type: "items",
 		component: "accordion",
 		items: {
-			dimensions: dimensions,
+			imageURL: dimensions,
 			measures: measures,
 			appearance: appearanceSection,
 			sorting : { uses : "sorting" }

@@ -46,21 +46,19 @@ define( ["jquery"], function($) {
 
 
 	function flipElement(eventType, element, layout){
-		if(!layout.props.isLocked){
-				var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
-				var newFrontRotation;
-				var newBackRotation;
-				if(layout.props.isReversed ^ orientation == 'h'){
-					//Reverse Horizontal (STANDARD : FUNCTION)
-						newFrontRotation = (eventType == 'mouseleave' ? 180 : 360);
-						newBackRotation = (eventType == 'mouseleave' ? 0 : 180);
-				} else{
-						newFrontRotation = (eventType == 'mouseleave' ? 0 : 180);
-						newBackRotation = (eventType == 'mouseleave' ? -180 : 0);
-				}
-				 $(element).find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
-				 $(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
-				}
+			var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
+			var newFrontRotation;
+			var newBackRotation;
+			if(layout.props.isReversed ^ orientation == 'h'){
+				//Reverse Horizontal (STANDARD : FUNCTION)
+					newFrontRotation = (eventType == 'mouseleave' ? 180 : 360);
+					newBackRotation = (eventType == 'mouseleave' ? 0 : 180);
+			} else{
+					newFrontRotation = (eventType == 'mouseleave' ? 0 : 180);
+					newBackRotation = (eventType == 'mouseleave' ? -180 : 0);
+			}
+			 $(element).find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
+			 $(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
 		}
 
   function setUpCss($element, layout){
@@ -150,7 +148,7 @@ function setOtherCssWithProperties($element, layout){
 	var containerWidth = $element.find('.qv-extension-picflip-flip-mainContainer').width();
 	var containerHeight = $element.find('.qv-extension-picflip-flip-mainContainer').width()
 	var padding  = $('.qv-extension-picflip-li').css("padding-top").slice(0,1)*2+1;
-	var size = ((containerWidth > containerHeight ? containerWidth : containerHeight)/(layout.props.imageSize)) - padding;
+	var size = ((containerWidth > containerHeight ? containerHeight : containerWidth)/(layout.props.imageSize)) - padding;
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.qv-extension-picflip-flip-mainContainer').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
   $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
   $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});

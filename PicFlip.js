@@ -7,8 +7,6 @@ define( [
   './js/functions'
 ], function (qlik, $, cssContent,  template, props, funcs) {
   'use strict'
-  var myElement;
-
 	return {
     template: template,
 		definition : props,
@@ -42,10 +40,10 @@ define( [
           funcs.setLockButton($element, layout);
         });
         $element.find('.qv-extension-picflip-flip-container').unbind().on("mouseenter", function(event){
-    			funcs.flipElement(event.type, this, layout);
+    			if(!layout.props.isLocked){ funcs.flipElement(event.type, this, layout); }
       	})
       	$element.find('.qv-extension-picflip-flip-container').on("mouseleave", function(event){
-          funcs.flipElement(event.type, this, layout);
+          if(!layout.props.isLocked){ funcs.flipElement(event.type, this, layout); }
       	})
       });
 
