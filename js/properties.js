@@ -34,12 +34,28 @@ define( [], function () {
 	var isLocked = {
 			type:"boolean",
 			ref:"props.isLocked",
+			label: "Flip is locked",
+			options: [{
+				value: true,
+				label: "Locked"
+			}, {
+				value: false,
+				label: "Unlocked"
+			}],
 			defaultValue: false
 	};
 
 	var isReversed = {
 			type:"boolean",
 			ref:"props.isReversed",
+			label: "Reversed",
+			options: [{
+				value: true,
+				label: "Is Reversed"
+			}, {
+				value: false,
+				label: "Not Reversed"
+			}],
 			defaultValue : false
 	};
 
@@ -138,12 +154,12 @@ define( [], function () {
 	var imageSize = {
 		type: "number",
 		component: "slider",
-		label: "Image Size",
+		label: "Images per row",
 		ref: "props.imageSize",
-		defaultValue: 200,
-		min: 100,
-		max: 400,
-		step: 5.0,
+		defaultValue: 4,
+		min: 1,
+		max: 10,
+		step: 1.0,
 	};
 
 	var title = {
@@ -290,6 +306,8 @@ define( [], function () {
 				label: "Image Customizaiton",
 				items : {
 					showFlipButtons : showFlipButtons,
+					isReversed : isReversed,
+					isLocked : isLocked,
 					flipOrientation : flipOrientation,
 					flipSpeed : flipSpeed,
 					imageSize : imageSize,

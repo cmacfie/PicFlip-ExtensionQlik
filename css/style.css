@@ -8,7 +8,7 @@
 	display: block;
 	width: 400px;
 	height: 400px;
-	margin:5px;
+	padding:5px;
 }
 
 .qv-extension-picflip-image-display {
@@ -100,7 +100,7 @@
 	display: inline-block;
 }
 
-.corner-circle {
+.qv-extension-picflip-corner-circle {
 	margin: 5px;
 	color: #fff;
 	background-color: rgba(0,0,0,0.3);

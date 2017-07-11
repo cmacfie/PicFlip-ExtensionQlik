@@ -64,6 +64,8 @@ define( [
       });
 */
       });
+
+    	console.log($element.clientWidth/layout.props.imageSize);
       return qlik.Promise.resolve();
     },
   };

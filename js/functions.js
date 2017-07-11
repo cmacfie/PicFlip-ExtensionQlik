@@ -5,8 +5,10 @@ define( ["jquery"], function($) {
 
   function setTextCss($element, layout) {
     var numMeasures =  layout.qHyperCube.qMeasureInfo.length;
-    var font_h3 = Math.round((0.65 + 1/numMeasures)*layout.props.imageSize/10*0.5);
-    var font_h2 = Math.round((0.65 + 1/numMeasures)*layout.props.imageSize/10);
+		var imageSize = $element.find('.qv-extension-picflip-li').css("width");
+    var font_h3 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10*0.5);
+    var font_h2 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10);
+		console.log("h2", font_h2);
     if(layout.props.fontsizeMeasure1 != ""){
       $element.find('.measure1 h3').css("font-size", layout.props.fontsizeMeasure1*0.5);
       $element.find(".measure1 h2").css("font-size", layout.props.fontsizeMeasure1*1);
@@ -49,12 +51,13 @@ define( ["jquery"], function($) {
 				var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
 				var newFrontRotation;
 				var newBackRotation;
-				if(layout.props.isReversed){
-						newFrontRotation = (eventType == 'mouseleave' ? 180 : 0);
+				if(layout.props.isReversed ^ orientation == 'h'){
+					//Reverse Horizontal (STANDARD : FUNCTION)
+						newFrontRotation = (eventType == 'mouseleave' ? 180 : 360);
 						newBackRotation = (eventType == 'mouseleave' ? 0 : 180);
-				} else {
+				} else{
 						newFrontRotation = (eventType == 'mouseleave' ? 0 : 180);
-						newBackRotation = (eventType == 'mouseleave' ? 180 : 0);
+						newBackRotation = (eventType == 'mouseleave' ? -180 : 0);
 				}
 				 $(element).find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
 				 $(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
@@ -62,9 +65,11 @@ define( ["jquery"], function($) {
 		}
 
   function setUpCss($element, layout){
+		console.log(layout);
+		console.log($element);
     removeCss($element, layout);
-    setTextCss($element, layout);
     setOtherCssWithProperties($element, layout);
+		setTextCss($element, layout);
     alignImages($element, layout);
 		flipElement('mouseleave', $element.find('.qv-extension-picflip-flip-container'), layout);
   }
@@ -144,20 +149,36 @@ define( ["jquery"], function($) {
   }
 
 function setOtherCssWithProperties($element, layout){
+	var containerWidth = $element.find('.container').width();
+	var padding  = $('.qv-extension-picflip-li').css("padding-top").slice(0,1)*2;
+	var size = (containerWidth/(layout.props.imageSize)) - padding;
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.container').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
   $element.find('.qv-extension-picflip-flipper').css("transition", layout.props.flipSpeed + "s");
-  $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
-  $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": layout.props.imageSize, "height": layout.props.imageSize});
-  $element.find('.qv-extension-picflip-li').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
-  $element.find('.qv-extension-picflip-flip-container').css({"width": layout.props.imageSize, "height": layout.props.imageSize});
+  $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
+  $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
+  $element.find('.qv-extension-picflip-li').css({"width":size, "height": size});
+  $element.find('.qv-extension-picflip-flip-container').css({"width": size, "height":size});
   $element.find('.qv-extension-picflip-back-display').css({"opacity": layout.props.backsideOpacity});
 
 
   /** Corner circle*/
-  $element.find('.qv-extension-picflip-corner-circle').css({"color": layout.props.cornerCircleColor, "display": "block", "border": "3px dotted " + layout.props.cornerCircleColor});
-  if(!layout.props.showCornerCircle){
-    $element.find('.qv-extension-picflip-corner-circle').css({"display": "none"});
-  }
+	if(layout.props.showCornerCircle){
+		var temp = $element.find('.qv-extension-picflip-li').css("width");
+		var size = temp.slice(0, temp.length-2);
+		console.log("size", size);
+		$element.find('.qv-extension-picflip-corner-circle').css({
+			"color": layout.props.cornerCircleColor,
+			"display": "block",
+			"border": "3px dotted " + layout.props.cornerCircleColor,
+			"width": size * 0.15,
+			"height": size * 0.15,
+			"border-radius": size * 0.15 + 10,
+			"font-size" : size*0.15 - 10,
+			"border" : Math.round(size/100 + 1) + "px solid #fff",
+		});
+  } else {
+	    $element.find('.qv-extension-picflip-corner-circle').css({"display": "none"});
+	}
   if(layout.props.useBoxShadow){
     $element.find('.qv-extension-picflip-corner-circle').css({"box-shadow": "3px 3px 3px rgba(0,0,0,0.3)"});
   } else {
