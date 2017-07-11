@@ -142,7 +142,7 @@ define( [], function () {
 
 	var flipSpeed = {
 		type: "number",
-		label: "Flip Speed",
+		label: "Flip Speed (Fast -- Slow)",
 		component: "slider",
 		ref: "props.flipSpeed",
 		min: 0,

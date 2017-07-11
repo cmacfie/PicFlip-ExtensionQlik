@@ -1,7 +1,0 @@
-.qv-extension-picflip-flip-container:hover .qv-extension-picflip-back {
-	transform: rotateY(0deg);
-}
-
-.qv-extension-picflip-flip-container:hover .qv-extension-picflip-front {
-    transform: rotateY(180deg);
-}
