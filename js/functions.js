@@ -8,7 +8,6 @@ define( ["jquery"], function($) {
 		var imageSize = $element.find('.qv-extension-picflip-li').css("width");
     var font_h3 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10*0.5);
     var font_h2 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10);
-		console.log("h2", font_h2);
     if(layout.props.fontsizeMeasure1 != ""){
       $element.find('.measure1 h3').css("font-size", layout.props.fontsizeMeasure1*0.5);
       $element.find(".measure1 h2").css("font-size", layout.props.fontsizeMeasure1*1);
@@ -65,8 +64,7 @@ define( ["jquery"], function($) {
 		}
 
   function setUpCss($element, layout){
-		console.log(layout);
-		console.log($element);
+
     removeCss($element, layout);
     setOtherCssWithProperties($element, layout);
 		setTextCss($element, layout);
@@ -168,7 +166,6 @@ function setOtherCssWithProperties($element, layout){
 	if(layout.props.showCornerCircle){
 		var temp = $element.find('.qv-extension-picflip-li').css("width");
 		var size = temp.slice(0, temp.length-2);
-		console.log("size", size);
 		$element.find('.qv-extension-picflip-corner-circle').css({
 			"color": layout.props.cornerCircleColor,
 			"display": "block",
