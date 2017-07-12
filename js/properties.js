@@ -35,28 +35,30 @@ define( [], function () {
 
 	var isLocked = {
 			type:"boolean",
+			component: "switch",
 			ref:"props.isLocked",
-			label: "Flip is locked",
+			label: "Flip is Initially Locked",
 			options: [{
 				value: true,
-				label: "Locked"
+				label: "True"
 			}, {
 				value: false,
-				label: "Unlocked"
+				label: "False"
 			}],
 			defaultValue: false
 	};
 
 	var isReversed = {
 			type:"boolean",
+			component: "switch",
 			ref:"props.isReversed",
-			label: "Reversed",
+			label: "Flip is Initially Reversed",
 			options: [{
 				value: true,
-				label: "Is Reversed"
+				label: "True"
 			}, {
 				value: false,
-				label: "Not Reversed"
+				label: "False"
 			}],
 			defaultValue : false
 	};
@@ -77,14 +79,13 @@ define( [], function () {
     		ref: "props.colorMeasure1",
     		label: "Color of Measure 1",
     		type: "string",
-				maxlength: "6",
 				defaultValue : "ffffff"
 	};
 	var colorMeasure2 = {
     		ref: "props.colorMeasure2",
     		label: "Color of Measure 2",
     		type: "string",
-		    expression: "optional",
+				maxlength: "6",
 				defaultValue : "ffffff"
 	};
 
@@ -92,7 +93,7 @@ define( [], function () {
     		ref: "props.colorMeasure3",
     		label: "Color of Measure 3",
     		type: "string",
-		    expression: "optional",
+				maxlength: "6",
 				defaultValue : "ffffff"
 	};
 
@@ -156,21 +157,6 @@ define( [], function () {
 		step: 0.2,
 		defaultValue: 0.6
 	};
-
-	var fitOrientation = {
-		type: "string",
-		label: "Fit width or height",
-		component: "buttongroup",
-		ref: "props.fitOrientation",
-		options: [{
-			value: "w",
-			label: "Width"
-		}, {
-			value: "h",
-			label: "Height"
-		}],
-		defaultValue: "w"
-	}
 
 	var imageSize = {
 		type: "number",
@@ -328,7 +314,6 @@ define( [], function () {
 					isLocked : isLocked,
 					flipOrientation : flipOrientation,
 					flipSpeed : flipSpeed,
-					fitOrientation : fitOrientation,
 					imageSize : imageSize,
 					cropType : cropType,
 					showImageOnBack : showImageOnBack,

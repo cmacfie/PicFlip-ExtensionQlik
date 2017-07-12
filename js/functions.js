@@ -78,7 +78,6 @@ define( ["jquery"], function($) {
   }
 
   function setLockButton($element, layout){
-		console.log("Change lock");
     $element.isLocked = !($element.isLocked);
     if($element.isLocked){
 			$element.find('.qv-extension-picflip-lockButton').css("background-color", "#da5555");
@@ -148,7 +147,6 @@ function setOtherCssWithProperties($element, layout){
 	var containerWidth = $element.find('.qv-extension-picflip-flip-mainContainer').width();
 	var containerHeight = $element.find('.qv-extension-picflip-flip-mainContainer').height();
 	var padding  = $('.qv-extension-picflip-li').css("padding-top").substring(0, $('.qv-extension-picflip-li').css("padding-top").length-2)*2+1;
-	console.log(padding);
 	//Use whichever is smaller if there's only one picture to avoid scrolling
 	var size = ((layout.props.imageSize == 1 && containerHeight < containerWidth ? containerHeight : containerWidth)/(layout.props.imageSize)) - padding;
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.qv-extension-picflip-flip-mainContainer').width() - $element.find('.qv-extension-picflip-buttonHolder').width());

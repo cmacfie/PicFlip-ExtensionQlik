@@ -28,11 +28,10 @@ define( [
 			}
 		},
     paint: function ($element, layout) {
-      this.$scope.id = layout.qInfo.qId;
       this.$scope.qlik=qlik;
+      qlik.setLanguage('en');
       $element.isLocked = layout.props.isLocked;
       $element.isReversed = layout.props.isReversed;
-      console.log("is Locked", $element.isLocked);
       if ( !this.$scope.table ) {
         this.$scope.table = qlik.table( this );
       }
