@@ -6,8 +6,10 @@ define( ["jquery"], function($) {
   function setTextCss($element, layout) {
     var numMeasures =  layout.qHyperCube.qMeasureInfo.length;
 		var imageSize = $element.find('.qv-extension-picflip-li').css("width");
-    var font_h3 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10*0.5);
-    var font_h2 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10);
+		if(imageSize !== undefined){
+    	var font_h3 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10*0.5);
+    	var font_h2 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10);
+		}
     if(layout.props.fontsizeMeasure1 != ""){
       $element.find('.measure1 h3').css("font-size", layout.props.fontsizeMeasure1*0.5);
       $element.find(".measure1 h2").css("font-size", layout.props.fontsizeMeasure1*1);
@@ -45,12 +47,11 @@ define( ["jquery"], function($) {
 
 
 
-	function flipElement(eventType, element, layout){
+	function flipElement($element, eventType, element, layout){
 			var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
 			var newFrontRotation;
 			var newBackRotation;
-			if(layout.props.isReversed ^ orientation == 'h'){
-				//Reverse Horizontal (STANDARD : FUNCTION)
+			if($element.isReversed ^ orientation == 'h'){
 					newFrontRotation = (eventType == 'mouseleave' ? 180 : 360);
 					newBackRotation = (eventType == 'mouseleave' ? 0 : 180);
 			} else{
@@ -62,30 +63,29 @@ define( ["jquery"], function($) {
 		}
 
   function setUpCss($element, layout){
-
     removeCss($element, layout);
     setOtherCssWithProperties($element, layout);
 		setTextCss($element, layout);
     alignImages($element, layout);
-		flipElement('mouseleave', $element.find('.qv-extension-picflip-flip-container'), layout);
+		flipElement($element, 'mouseleave', $element.find('.qv-extension-picflip-flip-container'), layout);
   }
 
   function setFlipButton($element, layout){
-    if(!layout.props.isLocked){
-      layout.props.isReversed = !(layout.props.isReversed);
+    if(!$element.isLocked){
+      $element.isReversed = !($element.isReversed);
       setUpCss($element, layout);
     }
   }
 
   function setLockButton($element, layout){
-    layout.props.isLocked = !(layout.props.isLocked);
-    if(layout.props.isLocked){
+		console.log("Change lock");
+    $element.isLocked = !($element.isLocked);
+    if($element.isLocked){
 			$element.find('.qv-extension-picflip-lockButton').css("background-color", "#da5555");
       $element.find('.qv-extension-picflip-flipButton').css({"background-color": "#ccc"});
     } else {
       $element.find('.qv-extension-picflip-lockButton').css("background-color", "");
       $element.find('.qv-extension-picflip-flipButton').css({"background-color": "#BADA55"});
-
     }
 		setUpCss($element, layout);
   }
@@ -96,7 +96,7 @@ define( ["jquery"], function($) {
       while(color.length < 7){
         color += color[i];
         i++;
-      }
+  		}
     } else if(color.length == 7){
       var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
       return ((0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1));
@@ -146,9 +146,11 @@ define( ["jquery"], function($) {
 
 function setOtherCssWithProperties($element, layout){
 	var containerWidth = $element.find('.qv-extension-picflip-flip-mainContainer').width();
-	var containerHeight = $element.find('.qv-extension-picflip-flip-mainContainer').width()
-	var padding  = $('.qv-extension-picflip-li').css("padding-top").slice(0,1)*2+1;
-	var size = ((containerWidth > containerHeight ? containerHeight : containerWidth)/(layout.props.imageSize)) - padding;
+	var containerHeight = $element.find('.qv-extension-picflip-flip-mainContainer').height();
+	var padding  = $('.qv-extension-picflip-li').css("padding-top").substring(0, $('.qv-extension-picflip-li').css("padding-top").length-2)*2+1;
+	console.log(padding);
+	//Use whichever is smaller if there's only one picture to avoid scrolling
+	var size = ((layout.props.imageSize == 1 && containerHeight < containerWidth ? containerHeight : containerWidth)/(layout.props.imageSize)) - padding;
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.qv-extension-picflip-flip-mainContainer').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
   $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
   $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
@@ -157,19 +159,21 @@ function setOtherCssWithProperties($element, layout){
   $element.find('.qv-extension-picflip-back-display').css({"opacity": layout.props.backsideOpacity});
 
 
+
   /** Corner circle*/
 	if(layout.props.showCornerCircle){
 		var temp = $element.find('.qv-extension-picflip-li').css("width");
-		var size = temp.slice(0, temp.length-2);
+		if(temp !== undefined){
+			var size = temp.slice(0, temp.length-2);
+		}
 		$element.find('.qv-extension-picflip-corner-circle').css({
-			"color": layout.props.cornerCircleColor,
+			"color": "#" + layout.props.cornerCircleColor,
 			"display": "block",
-			"border": "3px dotted " + layout.props.cornerCircleColor,
 			"width": size * 0.15,
 			"height": size * 0.15,
 			"border-radius": size * 0.15 + 10,
 			"font-size" : size*0.15 - 10,
-			"border" : Math.round(size/100 + 1) + "px solid #fff",
+			"border" : Math.round(size/100 + 1) + "px solid #" + layout.props.cornerCircleColor,
 		});
   } else {
 	    $element.find('.qv-extension-picflip-corner-circle').css({"display": "none"});
@@ -196,7 +200,7 @@ function setOtherCssWithProperties($element, layout){
     $element.find('.qv-extension-picflip-flip-mainContainer').css("height", "100%");
     $element.find('.qv-extension-picflip-flip-mainContainer').css("height", $element.find('.qv-extension-picflip-flip-mainContainer').height()-60);
     $element.find('.qv-extension-picflip-buttonRow').css("display", "block");
-		if(!layout.props.isLocked){
+		if(!$element.isLocked){
 				$element.find(".qv-extension-picflip-flipButton").css({"background-color": "#BADA55"});
 				$element.find(".qv-extension-picflip-lockButton").css({"background-color": ""});
 		} else {

@@ -77,12 +77,14 @@ define( [], function () {
     		ref: "props.colorMeasure1",
     		label: "Color of Measure 1",
     		type: "string",
+				maxlength: "6",
 				defaultValue : "ffffff"
 	};
 	var colorMeasure2 = {
     		ref: "props.colorMeasure2",
     		label: "Color of Measure 2",
     		type: "string",
+		    expression: "optional",
 				defaultValue : "ffffff"
 	};
 
@@ -90,6 +92,7 @@ define( [], function () {
     		ref: "props.colorMeasure3",
     		label: "Color of Measure 3",
     		type: "string",
+		    expression: "optional",
 				defaultValue : "ffffff"
 	};
 
@@ -153,6 +156,21 @@ define( [], function () {
 		step: 0.2,
 		defaultValue: 0.6
 	};
+
+	var fitOrientation = {
+		type: "string",
+		label: "Fit width or height",
+		component: "buttongroup",
+		ref: "props.fitOrientation",
+		options: [{
+			value: "w",
+			label: "Width"
+		}, {
+			value: "h",
+			label: "Height"
+		}],
+		defaultValue: "w"
+	}
 
 	var imageSize = {
 		type: "number",
@@ -271,7 +289,8 @@ define( [], function () {
 		ref: "props.cornerCircleColor",
 		label: "Color of Corner Circle",
 		type: "string",
-		defaultValue : "ffffff"
+		defaultValue : "ffffff",
+    expression: "optional"
 	};
 
 
@@ -304,12 +323,12 @@ define( [], function () {
 				type:"items",
 				label: "Image Customizaiton",
 				items : {
-
 					showFlipButtons : showFlipButtons,
 					isReversed : isReversed,
 					isLocked : isLocked,
 					flipOrientation : flipOrientation,
 					flipSpeed : flipSpeed,
+					fitOrientation : fitOrientation,
 					imageSize : imageSize,
 					cropType : cropType,
 					showImageOnBack : showImageOnBack,

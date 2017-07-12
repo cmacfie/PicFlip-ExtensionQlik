@@ -7,6 +7,9 @@ define( [
   './js/functions'
 ], function (qlik, $, cssContent,  template, props, funcs) {
   'use strict'
+
+  var isLocked;
+
 	return {
     template: template,
 		definition : props,
@@ -27,6 +30,9 @@ define( [
     paint: function ($element, layout) {
       this.$scope.id = layout.qInfo.qId;
       this.$scope.qlik=qlik;
+      $element.isLocked = layout.props.isLocked;
+      $element.isReversed = layout.props.isReversed;
+      console.log("is Locked", $element.isLocked);
       if ( !this.$scope.table ) {
         this.$scope.table = qlik.table( this );
       }
@@ -40,10 +46,10 @@ define( [
           funcs.setLockButton($element, layout);
         });
         $element.find('.qv-extension-picflip-flip-container').unbind().on("mouseenter", function(event){
-    			if(!layout.props.isLocked){ funcs.flipElement(event.type, this, layout); }
+    			if(!$element.isLocked){ funcs.flipElement($element, event.type, this, layout);  }
       	})
       	$element.find('.qv-extension-picflip-flip-container').on("mouseleave", function(event){
-          if(!layout.props.isLocked){ funcs.flipElement(event.type, this, layout); }
+          if(!$element.isLocked){ funcs.flipElement($element, event.type, this, layout); }
       	})
       });
 
