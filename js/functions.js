@@ -6,46 +6,21 @@ define( ["jquery"], function($) {
   function setTextCss($element, layout) {
     var numMeasures =  layout.qHyperCube.qMeasureInfo.length;
 		var imageSize = $element.find('.qv-extension-picflip-li').css("width");
-		if(imageSize !== undefined){
-    	var font_h3 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10*0.5);
-    	var font_h2 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10);
+  	var font_h3 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10*0.5);
+  	var font_h2 = Math.round((0.65 + 1/numMeasures)*imageSize.slice(0, imageSize.length-2)/10);
+		var fontSize = [layout.props.fontsizeMeasure1, layout.props.fontsizeMeasure2, layout.props.fontsizeMeasure3];
+		var colors = [layout.props.colorMeasure1, layout.props.colorMeasure2, layout.props.colorMeasure3];
+		for(var i = 0; i < 3; i++){
+			var h3_element = $element.find('.measure' + (i+1) + ' h3');
+			var h2_element = $element.find('.measure' + (i+1) + ' h2');
+			h3_element.css("font-size", (fontSize[i] != "" ? fontSize[i]*0.5 : font_h3));
+			h2_element.css("font-size", (fontSize[i] != "" ? fontSize[i]*1 : font_h2));
+			if(colors[i].length != 0){
+				h2_element.css("color", "#"+calculateLighterVersion(colors[i], 0.15));
+				h3_element.css("color", "#" + colors[i]);
+			}
 		}
-    if(layout.props.fontsizeMeasure1 != ""){
-      $element.find('.measure1 h3').css("font-size", layout.props.fontsizeMeasure1*0.5);
-      $element.find(".measure1 h2").css("font-size", layout.props.fontsizeMeasure1*1);
-    } else {
-      $element.find('.measure1 h3').css({"font-size": font_h3});
-      $element.find(".measure1 h2").css({"font-size": font_h2});
-    }
-    if(layout.props.fontsizeMeasure2 != ""){
-      $element.find(".measure2 h3").css("font-size", layout.props.fontsizeMeasure2*0.5);
-      $element.find(".measure2 h2").css("font-size", layout.props.fontsizeMeasure2*1);
-    } else {
-      $element.find(".measure2 h3").css("font-size", font_h3);
-      $element.find(".measure2 h2").css("font-size", font_h2);
-    }
-    if(layout.props.fontsizeMeasure3 != ""){
-      $element.find(".measure3 h3").css("font-size", layout.props.fontsizeMeasure3*0.5);
-      $element.find(".measure3 h2").css("font-size", layout.props.fontsizeMeasure3*1);
-    } else {
-      $element.find(".measure3 h3").css("font-size", font_h3);
-      $element.find(".measure3 h2").css("font-size", font_h2);
-    }
-    if(layout.props.colorMeasure1.length != 0){
-      $element.find(".measure1 h2").css("color", "#"+layout.props.colorMeasure1);
-      $element.find(".measure1 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure1, 0.15)));
-    }
-    if(layout.props.colorMeasure2 != 0){
-      $element.find(".measure2 h2").css("color", "#" + layout.props.colorMeasure2);
-      $element.find(".measure2 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure2, 0.15)));
-    }
-    if(layout.props.colorMeasure3 != 0){
-      $element.find(".measure3 h2").css("color", "#" + layout.props.colorMeasure3);
-      $element.find(".measure3 h3").css("color", ("#"+calculateLighterVersion(layout.props.colorMeasure3, 0.15)));
-    }
   }
-
-
 
 	function flipElement($element, eventType, element, layout){
 			var orientation = (layout.props.flipOrientation == "h" ? 'X' : 'Y');
