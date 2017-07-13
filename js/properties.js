@@ -67,18 +67,21 @@ define( [], function () {
     		ref: "props.colorBackside",
     		label: "Color on Backside",
     		type: "string",
+				maxlength: "6",
 				defaultValue : "333333"
 	};
 	var colorFrontside = {
     		ref: "props.colorFrontside",
     		label: "Color on Frontside",
     		type: "string",
+				maxlength: "6",
 				defaultValue : ""
 	};
 	var colorMeasure1 = {
     		ref: "props.colorMeasure1",
     		label: "Color of Measure 1",
     		type: "string",
+				maxlength: "6",
 				defaultValue : "ffffff"
 	};
 	var colorMeasure2 = {
