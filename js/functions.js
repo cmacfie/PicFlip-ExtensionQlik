@@ -1,4 +1,4 @@
-define( ["jquery"], function($) {
+define( [], function($) {
 	'use strict';
 
   var path ="/extensions/PicFlip";
@@ -33,8 +33,8 @@ define( ["jquery"], function($) {
 					newFrontRotation = (eventType == 'mouseleave' ? 0 : 180);
 					newBackRotation = (eventType == 'mouseleave' ? -180 : 0);
 			}
-			 $(element).find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
-			 $(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
+			 $element.find(element).find('.qv-extension-picflip-front').css("transform", "rotate" + orientation + "(" + newFrontRotation + "deg)");
+			 $element.find(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
 		}
 
   function setUpCss($element, layout){
@@ -79,9 +79,9 @@ define( ["jquery"], function($) {
     }
   }
   function removeCss($element, layout){
-    $('.qv-extension-picflip-back-title').removeClass('align-top');
-    $('.qv-extension-picflip-back-title').removeClass('align-center');
-    $('.qv-extension-picflip-back-title').removeClass('align-bottom');
+    $element.find('.qv-extension-picflip-back-title').removeClass('align-top');
+    $element.find('.qv-extension-picflip-back-title').removeClass('align-center');
+    $element.find('.qv-extension-picflip-back-title').removeClass('align-bottom');
   }
 
   function alignImages($element, layout) {
@@ -121,7 +121,7 @@ define( ["jquery"], function($) {
 function setOtherCssWithProperties($element, layout){
 	var containerWidth = $element.find('.qv-extension-picflip-flip-mainContainer').width();
 	var containerHeight = $element.find('.qv-extension-picflip-flip-mainContainer').height();
-	var padding  = $('.qv-extension-picflip-li').css("padding-top").substring(0, $('.qv-extension-picflip-li').css("padding-top").length-2)*2+1;
+	var padding  = $element.find('.qv-extension-picflip-li').css("padding-top").substring(0, $element.find('.qv-extension-picflip-li').css("padding-top").length-2)*2+1;
 	//Use whichever is smaller if there's only one picture to avoid scrolling
 	var size = ((layout.props.imageSize == 1 && containerHeight < containerWidth ? containerHeight : containerWidth)/(layout.props.imageSize)) - padding;
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.qv-extension-picflip-flip-mainContainer').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
