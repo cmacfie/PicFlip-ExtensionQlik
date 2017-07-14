@@ -3,6 +3,14 @@ define( [], function($) {
 
   var path ="/extensions/PicFlip";
 
+
+	  function setUpCss($element, layout){
+	    setOtherCssWithProperties($element, layout);
+			setTextCss($element, layout);
+	    alignImages($element, layout);
+			flipElement($element, 'mouseleave', $element.find('.qv-extension-picflip-flip-container'), layout);
+	  }
+
   function setTextCss($element, layout) {
     var numMeasures =  layout.qHyperCube.qMeasureInfo.length;
 		var imageSize = $element.find('.qv-extension-picflip-li').css("width");
@@ -37,13 +45,6 @@ define( [], function($) {
 			 $element.find(element).find('.qv-extension-picflip-back').css("transform", "rotate" + orientation + "(" + newBackRotation + "deg)");
 		}
 
-  function setUpCss($element, layout){
-    removeCss($element, layout);
-    setOtherCssWithProperties($element, layout);
-		setTextCss($element, layout);
-    alignImages($element, layout);
-		flipElement($element, 'mouseleave', $element.find('.qv-extension-picflip-flip-container'), layout);
-  }
 
   function setFlipButton($element, layout){
     if(!$element.isLocked){
@@ -78,45 +79,22 @@ define( [], function($) {
       return color;
     }
   }
-  function removeCss($element, layout){
-    $element.find('.qv-extension-picflip-back-title').removeClass('align-top');
-    $element.find('.qv-extension-picflip-back-title').removeClass('align-center');
-    $element.find('.qv-extension-picflip-back-title').removeClass('align-bottom');
+
+	function alignImages($element, layout) {
+    var verticalAlign = layout.props.textPlacement_vertically;
+		var top;
+    if(verticalAlign == "top"){	top = 0; }
+		else if(verticalAlign == "center") { top = 50; }
+		else {top = 100;	}
+		$element.find('.qv-extension-picflip-back-title').css({
+			'left': '50%', 'top': top + '%',
+			'transform': 'translate(-50%,' + -top + '%)'
+		});
+    $element.find('.qv-extension-picflip-back-title').css({"text-align":layout.props.textAlignment});
+    $element.find('.qv-extension-picflip-back-title h2, h3').css("padding", "0");
+    $element.find('.qv-extension-picflip-back-title h2, h3').css("padding-" + layout.props.textAlignment, "5px");
   }
 
-  function alignImages($element, layout) {
-    var verticalAlign = layout.props.textPlacement_vertically;
-    $element.find('.qv-extension-picflip-back-title h2, h3').css("padding", "0");
-    if(verticalAlign == "top"){
-      $element.find('.qv-extension-picflip-back-title').css({
-        "position": "absolute",
-        "left": "50%", "top": "0%",
-        "transform": "translate(-50%, 0%)"
-      });
-    } else if (verticalAlign == "center"){
-      $element.find('.qv-extension-picflip-back-title').css({
-        "position": "absolute",
-        "left": "50%", "top": "50%",
-        "transform": "translate(-50%, -50%)"
-      });
-    } else if (verticalAlign == "bottom"){
-      $element.find('.qv-extension-picflip-back-title').css({
-        "position": "absolute",
-        "left": "50%", "top": "100%",
-        "transform": "translate(-50%, -100%)"
-      });
-    }
-    var textAlignment = layout.props.textAlignment;
-    if(textAlignment == "L"){
-      $element.find('.qv-extension-picflip-back-title').css({"text-align":"left"});
-      $element.find('.qv-extension-picflip-back-title h2, h3').css("padding-left", "5px");
-    } else if(textAlignment == "C"){
-      $element.find('.qv-extension-picflip-back-title').css({"text-align":"center"});
-    } else {
-      $element.find('.qv-extension-picflip-back-title').css({"text-align":"right"});
-      $element.find('.qv-extension-picflip-back-title h2, h3').css("padding-right", "5px");
-    }
-  }
 
 function setOtherCssWithProperties($element, layout){
 	var containerWidth = $element.find('.qv-extension-picflip-flip-mainContainer').width();

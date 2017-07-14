@@ -221,16 +221,16 @@ define( [], function () {
 		label: "Text Alignment",
 		ref: "props.textAlignment",
 		options: [{
-			value: "L",
+			value: "left",
 			label: "Left"
 		}, {
-			value: "C",
+			value: "center",
 			label: "Center"
 		}, {
-			value: "R",
+			value: "right",
 			label: "Right"
 		}],
-		defaultValue: "L"
+		defaultValue: "left"
 	};
 
 	var showCornerCircle = {
