@@ -68,7 +68,7 @@ define( [], function () {
     		label: "Color on Backside",
     		type: "string",
 				maxlength: "6",
-				defaultValue : "333333"
+				defaultValue : "bbbbbb"
 	};
 	var colorFrontside = {
     		ref: "props.colorFrontside",
@@ -279,7 +279,6 @@ define( [], function () {
 		label: "Color of Corner Circle",
 		type: "string",
 		defaultValue : "ffffff",
-    expression: "optional"
 	};
 
 
