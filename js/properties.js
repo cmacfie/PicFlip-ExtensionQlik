@@ -23,6 +23,7 @@ define( [], function () {
 		component: "switch",
 		label: "Use Titles on Cardback",
 		ref: "props.useTitles",
+		ref: "props.useTitles",
 		options: [{
 			value: true,
 			label: "On"
@@ -67,28 +68,28 @@ define( [], function () {
     		ref: "props.colorBackside",
     		label: "Color on Backside",
     		type: "string",
-				maxlength: "6",
-				defaultValue : "bbbbbb"
+				expression : "optional",
+				defaultValue : "333333"
 	};
 	var colorFrontside = {
     		ref: "props.colorFrontside",
     		label: "Color on Frontside",
     		type: "string",
-				maxlength: "6",
+				expression : "optional",
 				defaultValue : ""
 	};
 	var colorMeasure1 = {
     		ref: "props.colorMeasure1",
     		label: "Color of Measure 1",
     		type: "string",
-				maxlength: "6",
+				expression : "optional",
 				defaultValue : "ffffff"
 	};
 	var colorMeasure2 = {
     		ref: "props.colorMeasure2",
     		label: "Color of Measure 2",
     		type: "string",
-				maxlength: "6",
+				expression : "optional",
 				defaultValue : "ffffff"
 	};
 
@@ -96,7 +97,7 @@ define( [], function () {
     		ref: "props.colorMeasure3",
     		label: "Color of Measure 3",
     		type: "string",
-				maxlength: "6",
+				expression : "optional",
 				defaultValue : "ffffff"
 	};
 
@@ -104,6 +105,7 @@ define( [], function () {
     		ref: "props.fontsizeMeasure1",
     		label: "Textsize of Measure 1",
     		type: "string",
+				expression : "optional",
 				defaultValue : ""
 	};
 
@@ -111,12 +113,14 @@ define( [], function () {
     		ref: "props.fontsizeMeasure2",
     		label: "Textsize of Measure 2",
     		type: "string",
+				expression : "optional",
 				defaultValue : ""
 	};
 	var fontsizeMeasure3 = {
 				ref: "props.fontsizeMeasure3",
 				label: "Textsize of Measure 3",
 				type: "string",
+				expression : "optional",
 				defaultValue : ""
 	};
 
@@ -278,8 +282,17 @@ define( [], function () {
 		ref: "props.cornerCircleColor",
 		label: "Color of Corner Circle",
 		type: "string",
+		expression: "optional",
 		defaultValue : "ffffff",
 	};
+
+	var cornerFunction = {
+		ref : "props.cornerFunction",
+		label : "Corner Function",
+		expression : "optional",
+		type : "string",
+		defaultValue : ""
+	}
 
 
 	var appearanceSection = {
@@ -320,6 +333,7 @@ define( [], function () {
 					cropType : cropType,
 					showImageOnBack : showImageOnBack,
 					cornerCircleColor : cornerCircleColor,
+					cornerFunction : cornerFunction,
 					showCornerCircle : showCornerCircle,
 					useBoxShadow : useBoxShadow
 				}

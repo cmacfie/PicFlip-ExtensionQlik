@@ -1,4 +1,4 @@
-define( [], function($) {
+define( [], function() {
 	'use strict';
 
   var path ="/extensions/PicFlip";
@@ -6,10 +6,24 @@ define( [], function($) {
 
 	  function setUpCss($element, layout){
 	    setOtherCssWithProperties($element, layout);
+			setUpImages($element, layout);
 			setTextCss($element, layout);
 	    alignImages($element, layout);
 			flipElement($element, 'mouseleave', $element.find('.qv-extension-picflip-flip-container'), layout);
 	  }
+
+	function setUpImages($element, layout){
+		$.each(layout.qHyperCube.qDataPages[0].qMatrix, function(index, value){
+		var ending = (value[0].qText.slice(value[0].qText.length-4, value[0].qText.length));
+		 if(ending.match(/^(jpeg|.jpg|.png|.gif|apng|.svg|.bmp|.ico)$/)){
+				$element.find('#img_front' + index).attr('src', value[0].qText);
+				$element.find('#img_back' + index).attr('src', value[0].qText);
+			} else {
+				$element.find('#img_front' + index).attr('src', "/extensions/PicFlip/images/example-img.jpg");
+				$element.find('#img_back' + index).attr('src', "/extensions/PicFlip/images/example-img.jpg");
+		 }
+		});
+	}
 
   function setTextCss($element, layout) {
     var numMeasures =  layout.qHyperCube.qMeasureInfo.length;
@@ -99,12 +113,17 @@ define( [], function($) {
 function setOtherCssWithProperties($element, layout){
 	var containerWidth = $element.find('.qv-extension-picflip-flip-mainContainer').width();
 	var containerHeight = $element.find('.qv-extension-picflip-flip-mainContainer').height();
-	var padding  = $element.find('.qv-extension-picflip-li').css("padding-top").substring(0, $element.find('.qv-extension-picflip-li').css("padding-top").length-2)*2+1;
+	var padding  = $element.find('.qv-extension-picflip-li').css("padding-top").substring(0, $element.find('.qv-extension-picflip-li').css("padding-top").length-2)*2+5;
 	//Use whichever is smaller if there's only one picture to avoid scrolling
 	var size = ((layout.props.imageSize == 1 && containerHeight < containerWidth ? containerHeight : containerWidth)/(layout.props.imageSize)) - padding;
   $element.find('.qv-extension-picflip-titleHolder').css("width", $element.find('.qv-extension-picflip-flip-mainContainer').width() - $element.find('.qv-extension-picflip-buttonHolder').width());
-  $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
-  $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
+	$element.find('.qv-extension-picflip-front').css({"transition": "0s", "width": size, "height": size});
+	$element.find('.qv-extension-picflip-back').css({"transition": "0s", "width": size, "height": size});
+	setTimeout(function(){
+		//Wait 1 millisec to quickly resize images before turning on animation speed
+	  $element.find('.qv-extension-picflip-front').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
+	  $element.find('.qv-extension-picflip-back').css({"transition": layout.props.flipSpeed + "s", "width": size, "height": size});
+	}, 1);
 	$element.find('.qv-extension-picflip-li').css({"width":size, "height": size});
 	$element.find('.qv-extension-picflip-flip-container').css({"width": size, "height":size});
   $element.find('.qv-extension-picflip-back-display').css({"opacity": layout.props.backsideOpacity});
@@ -116,6 +135,13 @@ function setOtherCssWithProperties($element, layout){
 		var temp = $element.find('.qv-extension-picflip-li').css("width");
 		if(temp !== undefined){
 			var size = temp.slice(0, temp.length-2);
+		}
+		if((layout.props.cornerFunction + "").length != 0){
+			$element.find('.qv-extension-picflip-corner-circle h1').text(layout.props.cornerFunction);
+		} else {
+			$.each(layout.qHyperCube.qDataPages[0].qMatrix, function(index, value){
+				$element.find('#cornerh1_'+index).text(index+1);
+			});
 		}
 		$element.find('.qv-extension-picflip-corner-circle').css({
 			"color": "#" + layout.props.cornerCircleColor,

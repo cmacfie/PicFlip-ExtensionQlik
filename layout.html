@@ -34,13 +34,13 @@
 							<div class="qv-extension-picflip-flipper">
 								<div  class="qv-extension-picflip-front" style="background: #{{layout.props.colorFrontside}}" >
                   <div class="qv-extension-picflip-corner-circle">
-                    <h1 style="position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);">{{$parent.$index+1}}</h1>
+                    <h1 id="cornerh1_{{$parent.$index}}" style="position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);">{{$parent.$index+1}}</h1>
                   </div>
-									<img class="qv-extension-picflip-image-display" ng-src="{{row.cells[0].qText}}">
+									<img id='img_front{{$parent.$index}}' class="qv-extension-picflip-image-display" >
 								</div>
 							</div>
 							<div class="qv-extension-picflip-back" style="background: #{{layout.props.colorBackside}}">
-							<img class="qv-extension-picflip-image-display qv-extension-picflip-back-display" ng-src="{{row.cells[0].qText}}" >
+							<img id='img_back{{$parent.$index}}' class="qv-extension-picflip-image-display qv-extension-picflip-back-display"  >
 								<div class="qv-extension-picflip-back-title">
 
 										<div  class="measure1"  ng-if="row.cells[1]">
