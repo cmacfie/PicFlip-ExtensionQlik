@@ -10,17 +10,12 @@ As of right now, the extension only supports Google Chrome. Other browsers to be
 
 ## Customization
 
-Color settings
+Color settings, test settings and image manipulation settings
 
 ![Alt text](./screenshots/Settings-Color.png?raw=true "Color settings")
-
-Text settings
-
 ![Alt text](./screenshots/Settings-Text.png?raw=true "Text settings")
-
-Image manipulation settings
-
 ![Alt text](./screenshots/Settings-ImageAppearance.png?raw=true "Image manipulation settings")
+
 ## Examples with different settings
 
 **Please note that the gifs are not as smooth as the extension**
