@@ -13,12 +13,15 @@ As of right now, the extension only supports Google Chrome. Other browsers to be
 ## Customization
 
 Color settings
+
 ![Alt text](./screenshots/Settings-Color.png?raw=true "Color settings")
 
 Text settings
+
 ![Alt text](./screenshots/Settings-Text.png?raw=true "Text settings")
 
 Image manipulation settings
+
 ![Alt text](./screenshots/Settings-ImageAppearance.png?raw=true "Image manipulation settings")
 ## Examples with different settings
 
