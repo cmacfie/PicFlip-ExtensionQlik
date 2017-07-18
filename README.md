@@ -6,10 +6,21 @@ Image extension for Qlik
 ## Purpose & Description
 
 This extension is a sleek and easy to use image visualization for applications you want to liven up!
+As of right now, the extension only supports Google Chrome. Other browsers to be added shortly.
 
 ![Alt text](./screenshots/Display1.gif?raw=true "Displaying normal usage")
 
-## Easy to Customize
+## Customization
+
+Color settings
+![Alt text](./screenshots/Settings-Color.png?raw=true "Color settings")
+
+Text settings
+![Alt text](./screenshots/Settings-Text.png?raw=true "Text settings")
+
+Image manipulation settings
+![Alt text](./screenshots/Settings-ImageAppearance.png?raw=true "Image manipulation settings")
+## Examples with different settings
 
 You can change plenty of things in this extension. Here are just a few examples of the same app with
 different settings in the application.
