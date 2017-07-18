@@ -29,3 +29,7 @@ Center-center aligned text, image contained within square, horizontal flip
 ### Example 4
 Start with images turned over, locked to make them not flip over
 ![Alt text](./screenshots/SoftwareCompany_7.gif?raw=true "Displaying normal usage")
+
+## Technical
+
+The extension is made with Angular and css. **The extension is made for Google Chrome and does not work for Firefox at the moment. Support to be added soon**.
