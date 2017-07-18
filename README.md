@@ -1,8 +1,6 @@
 # PicFlip-ExtensionQlik
 Image extension for Qlik
 
-## Please note that the gifs are not as smooth as the extension
-
 ## Purpose & Description
 
 This extension is a sleek and easy to use image visualization for applications you want to liven up!
@@ -24,6 +22,8 @@ Image manipulation settings
 
 ![Alt text](./screenshots/Settings-ImageAppearance.png?raw=true "Image manipulation settings")
 ## Examples with different settings
+
+**Please note that the gifs are not as smooth as the extension**
 
 You can change plenty of things in this extension. Here are just a few examples of the same app with
 different settings in the application.
