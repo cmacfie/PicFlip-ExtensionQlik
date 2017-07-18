@@ -32,4 +32,5 @@ Start with images turned over, locked to make them not flip over
 
 ## Technical
 
-The extension is made with Angular and css. **The extension is made for Google Chrome and does not work for Firefox at the moment. Support to be added soon**.
+The extension is made with Angular and css. **The extension is made for Google Chrome and does not work for Firefox at the moment. Support to be added soon**. The images are linked via URL:s.
+Because of security reasons in browsers you can not link to local files on your machine, but must host the images online.
