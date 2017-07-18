@@ -10,7 +10,7 @@ As of right now, the extension only supports Google Chrome. Other browsers to be
 
 ## Customization
 
-|Color settings |Test settings | Image Settings |
+|Image Settings |Text Settings | Color Settings |
 |:----------:|:------------:|:-------------:|
 | ![Alt text](./screenshots/Settings-ImageAppearance.png?raw=true "Image manipulation settings") | ![Alt text](./screenshots/Settings-Text.png?raw=true "Text settings") | ![Alt text](./screenshots/Settings-Color.png?raw=true "Color settings") |
 
