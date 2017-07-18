@@ -1,9 +1,11 @@
 # PicFlip-ExtensionQlik
-Image extension for Qlik
+
+Image extension for Qlik Sense
 
 ## Purpose & Description
 
-This extension is a sleek and easy to use image visualization for applications you want to liven up!
+This is a sleek and easy to use visualization extension for applications where you need to display images! Use it to make your presentation more fun, your data more understandable or your application more beautiful!
+ 
 As of right now, the extension only supports Google Chrome. Other browsers to be added shortly.
 
 ![Alt text](./screenshots/Display1.gif?raw=true "Displaying normal usage")
