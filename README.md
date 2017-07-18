@@ -7,4 +7,6 @@ Image extension for Qlik
 
 ![Alt text](./screenshots/SoftwareCompany_4.gif?raw=true "Displaying normal usage")
 
-![Alt text](./screenshots/SoftwareCompany_6.gif?raw=true "Displaying normal usage")
+![Alt text](./screenshots/SoftwareCompany_3.gif?raw=true "Displaying normal usage")
+
+![Alt text](./screenshots/SoftwareCompany_7.gif?raw=true "Displaying normal usage")
