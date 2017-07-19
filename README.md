@@ -5,7 +5,7 @@ Image extension for Qlik Sense
 ## Purpose & Description
 
 This is a sleek and easy to use visualization extension for applications where you need to display images! Use it to make your presentation more fun, your data more understandable or your application more beautiful!
- 
+
 As of right now, the extension only supports Google Chrome. Other browsers to be added shortly.
 
 ![Alt text](./screenshots/Display1.gif?raw=true "Displaying normal usage")
@@ -38,6 +38,10 @@ Center-center aligned text, image contained within square, horizontal flip
 ### Example 4
 Start with images turned over, locked to make them not flip over
 ![Alt text](./screenshots/SoftwareCompany_7.gif?raw=true "Displaying normal usage")
+
+### Example 5
+Or simply have it as a simple image display by having it be locked with no measurements.
+![Alt text](./screenshots/SoftwareCompany_8.png?raw=true "Displaying normal usage")
 
 ## Technical
 
