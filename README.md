@@ -40,7 +40,7 @@ Start with images turned over, locked to make them not flip over
 ![Alt text](./screenshots/SoftwareCompany_7.gif?raw=true "Displaying normal usage")
 
 ### Example 5
-Or simply have it as a simple image display by having it be locked.
+Or simply have it as a simple image display by having it be locked. In this example the corner circle is on, displaying what position in the list they are. It's sorted by amount of bugs found per person.
 ![Alt text](./screenshots/SimpleDisplay.png?raw=true "Displaying normal usage")
 
 ## Technical
