@@ -41,7 +41,7 @@ Start with images turned over, locked to make them not flip over
 
 ### Example 5
 Or simply have it as a simple image display by having it be locked with no measurements.
-![Alt text](./screenshots/SoftwareCompany_8.png?raw=true "Displaying normal usage")
+![Alt text](./screenshots/SimpleDisplay.png?raw=true "Displaying normal usage")
 
 ## Technical
 
