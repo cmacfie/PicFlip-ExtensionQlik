@@ -6,7 +6,7 @@ Image extension for Qlik Sense
 
 This is a sleek and easy to use visualization extension for applications where you need to display images! Use it to make your presentation more fun, your data more understandable or your application more beautiful!
 
-As of right now, the extension only supports Google Chrome. Other browsers to be added shortly.
+The extension only supports Google Chrome.
 
 ![Alt text](./screenshots/Display1.gif?raw=true "Displaying normal usage")
 
@@ -45,5 +45,5 @@ Or simply have it as a simple image display by having it be locked. In this exam
 
 ## Technical
 
-The extension is made with Angular and css. **The extension is made for Google Chrome and does not work for Firefox at the moment. Support to be added soon**. The images are linked via URL:s.
+The extension is made with Angular and css. **The extension is made for Google Chrome and does not work for Firefox**. The images are linked via URL:s.
 Because of security reasons in browsers you can not link to local files on your machine, but must host the images online.
