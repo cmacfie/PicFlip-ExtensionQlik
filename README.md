@@ -8,6 +8,8 @@ Hi everyone. I made this extension as an introduction project when I interned at
 
 ![Alt text](./screenshots/picflip.png?raw=true "How to link a URL")
 
+What is happening in the code is that an `<img>` element gets an attribute conncted to it with the source you give it.
+
 The URL needs to be hosted online for security reasons. If you are in need of support, this extension might not be for you, as I unfortunetly don't have the time to give any.
 
 ## Purpose & Description
