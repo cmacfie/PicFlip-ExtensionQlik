@@ -2,6 +2,14 @@
 
 Image extension for Qlik Sense
 
+## 2019 update - This extension will not be updated
+
+Hi everyone. I made this extension as an introduction project when I interned at Qlik 2017. I no longer work with Qlik in any way and will not be updating it. I've been contacted a few times by people need help to attatch images to the extension. I hope this image helps people who were stuck:
+
+![Alt text](./screenshots/picflip.png?raw=true "How to link a URL")
+
+The URL needs to be hosted online for security reasons. If you are in need of support, this extension might not be for you, as I unfortunetly don't have the time to give any.
+
 ## Purpose & Description
 
 This is a sleek and easy to use visualization extension for applications where you need to display images! Use it to make your presentation more fun, your data more understandable or your application more beautiful!
