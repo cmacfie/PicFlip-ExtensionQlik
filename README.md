@@ -4,7 +4,7 @@ Image extension for Qlik Sense
 
 # This extension will not be updated
 
-Hi everyone. I made this extension as an introduction project when I interned at Qlik in 2017. I no longer work with Qlik in any way and will not be updating it. I've been contacted a few times by people need help to attatch images to the extension. I hope this image helps people who were stuck:
+Hi everyone. I made this extension as an introduction project when I interned at Qlik in 2017. I no longer work with Qlik in any way and will not be updating it. I've been contacted a few times by people  thatneed help to attatch images to the extension. I hope this image helps people who were stuck:
 
 ![Alt text](./screenshots/picflip.png?raw=true "How to link a URL")
 
